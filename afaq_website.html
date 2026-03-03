@@ -1,0 +1,2581 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اللجنة الإعلامية | نادي آفاق</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1f3b58;
+      --primary-light: #2a4f75;
+      --secondary: #c9a86a;
+      --secondary-light: #e2c48a;
+      --bg: #f4f1eb;
+      --white: #ffffff;
+      --gray: #6c757d;
+      --gray-light: #f8f9fa;
+      --border: #e0ddd5;
+      --nav-h: 68px;
+      --sidebar-w: 240px;
+      --radius: 14px;
+      --shadow: 0 6px 24px rgba(31, 59, 88, 0.10);
+      --shadow-lg: 0 14px 40px rgba(31, 59, 88, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    /* ─────── SCROLLBAR ─────── */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--secondary);
+      border-radius: 10px;
+    }
+
+    /* ─────── LAYOUT ─────── */
+    body {
+      background: var(--bg);
+      color: var(--primary);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ─────── TOP NAV ─────── */
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: var(--primary);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      border-bottom: 3px solid var(--secondary);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .topnav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .topnav-logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--white);
+      padding: 3px;
+      box-shadow: 0 0 12px rgba(201, 168, 106, 0.4);
+      object-fit: contain;
+    }
+
+    .topnav-logo .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+    }
+
+    .topnav-logo .brand p {
+      font-size: 0.72rem;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: .3s;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* top nav links (desktop) */
+    .topnav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .topnav-links a {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: .2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .topnav-links a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+    }
+
+    .topnav-links a.active {
+      background: rgba(201, 168, 106, 0.18);
+      color: var(--secondary);
+    }
+
+    .topnav-links a i {
+      font-size: 0.9rem;
+    }
+
+    /* ─────── WRAPPER ─────── */
+    .wrapper {
+      display: flex;
+      flex: 1;
+    }
+
+    /* ─────── SIDEBAR ─────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--white);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .sidebar-header {
+      padding: 20px 18px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-header p {
+      font-size: 0.7rem;
+      color: var(--gray);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 10px 8px;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: .2s;
+      margin-bottom: 2px;
+    }
+
+    .sidebar-nav a i {
+      width: 20px;
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.95rem;
+      transition: .2s;
+    }
+
+    .sidebar-nav a:hover {
+      background: var(--bg);
+    }
+
+    .sidebar-nav a:hover i {
+      color: var(--primary);
+    }
+
+    .sidebar-nav a.active {
+      background: rgba(31, 59, 88, 0.07);
+      color: var(--primary);
+    }
+
+    .sidebar-nav a.active i {
+      color: var(--secondary);
+    }
+
+    .sidebar-nav a.active::before {
+      content: '';
+      width: 3px;
+      height: 60%;
+      background: var(--secondary);
+      border-radius: 2px;
+      position: absolute;
+      right: 0;
+    }
+
+    .sidebar-nav a {
+      position: relative;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 8px 12px;
+    }
+
+    /* ─────── MAIN CONTENT ─────── */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ─────── PAGE ─────── */
+    .page {
+      display: none;
+      min-height: calc(100vh - var(--nav-h));
+      padding: 36px 40px 60px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-header {
+      margin-bottom: 32px;
+    }
+
+    .page-header h2 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-header h2 i {
+      color: var(--secondary);
+    }
+
+    .page-header p {
+      margin-top: 6px;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .page-header .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--secondary);
+      border-radius: 2px;
+      margin-top: 10px;
+    }
+
+    /* ─────── CARDS GRID ─────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .svc-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-decoration: none;
+      color: var(--primary);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-bottom: 4px solid transparent;
+      transition: .3s;
+    }
+
+    .svc-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-bottom-color: var(--secondary);
+    }
+
+    .svc-card i {
+      font-size: 2.6rem;
+      margin-bottom: 14px;
+      color: var(--primary);
+      transition: .3s;
+    }
+
+    .svc-card:hover i {
+      color: var(--secondary);
+      transform: scale(1.1);
+    }
+
+    .svc-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .svc-card p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ─────── POLICY TABS ─────── */
+    .policy-tabs-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .ptab {
+      background: var(--white);
+      border: 2px solid var(--border);
+      color: var(--primary);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+      font-family: 'Tajawal', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ptab:hover {
+      border-color: var(--primary);
+      background: var(--bg);
+    }
+
+    .ptab.active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    .ptab i {
+      font-size: 0.8rem;
+    }
+
+    .policy-panel {
+      display: none;
+      animation: fadeUp .3s ease;
+    }
+
+    .policy-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .policy-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow);
+      border-right: 5px solid var(--secondary);
+      max-width: 900px;
+    }
+
+    .policy-card h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .policy-card h3 i {
+      color: var(--secondary);
+    }
+
+    .policy-intro {
+      color: var(--gray);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .policy-points {
+      list-style: none;
+    }
+
+    .policy-points li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .policy-points li:last-child {
+      border-bottom: none;
+    }
+
+    .policy-points li::before {
+      content: '◆';
+      color: var(--secondary);
+      font-size: .6rem;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    /* violations */
+    .vio-section h4 {
+      font-size: .95rem;
+      color: var(--primary);
+      margin: 18px 0 10px;
+      padding: 8px 12px;
+      background: var(--bg);
+      border-radius: 8px;
+    }
+
+    .vio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .82rem;
+      margin-bottom: 14px;
+    }
+
+    .vio-table th {
+      background: var(--primary);
+      color: var(--white);
+      padding: 9px 12px;
+      text-align: center;
+    }
+
+    .vio-table td {
+      padding: 8px 12px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .vio-table tr:hover td {
+      background: rgba(201, 168, 106, .07);
+    }
+
+    /* authorized users table */
+    .auth-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .82rem;
+      margin-top: 14px;
+    }
+    .auth-table th, .auth-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .auth-table th {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .auth-table tr:nth-child(even) td {
+      background: var(--bg);
+    }
+    .auth-table .check {
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: .73rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .badge-warn {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .badge-alert {
+      background: #f8d7da;
+      color: #842029;
+    }
+
+    .badge-ban {
+      background: #d1e7dd;
+      color: #0f5132;
+    }
+
+    /* ─────── ORG CHART ─────── */
+    .org-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .org-box {
+      background: var(--primary);
+      color: var(--white);
+      padding: 11px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      border: 2px solid var(--secondary);
+      min-width: 170px;
+      text-align: center;
+    }
+
+    .org-line {
+      width: 2px;
+      height: 22px;
+      background: var(--secondary);
+    }
+
+    .org-level {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .org-committees {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .org-col {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px;
+      flex: 1;
+      min-width: 220px;
+      max-width: 320px;
+      border-top: 4px solid var(--primary);
+      box-shadow: var(--shadow);
+    }
+
+    .org-col-title {
+      background: var(--secondary);
+      color: var(--primary);
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .org-role {
+      background: var(--gray-light);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-align: center;
+      font-size: .88rem;
+      margin-bottom: 6px;
+    }
+
+    /* ─────── CALENDAR ─────── */
+    .cal-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .cal-wrap iframe {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* ─────── OCCASIONS ─────── */
+    .occ-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .occ-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      box-shadow: var(--shadow);
+      border-right: 4px solid var(--secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: .3s;
+    }
+
+    .occ-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .occ-past {
+      opacity: .5;
+      border-right-color: var(--gray) !important;
+    }
+
+    .occ-today {
+      border-right-color: #22c55e !important;
+      background: linear-gradient(135deg, #fff 75%, #f0fdf4);
+    }
+
+    .occ-variable {
+      border-right-style: dashed;
+    }
+
+    .occ-icon {
+      font-size: 1.6rem;
+    }
+
+    .occ-date {
+      font-size: .74rem;
+      color: var(--gray);
+    }
+
+    .occ-name {
+      font-size: .93rem;
+      font-weight: 700;
+    }
+
+    .occ-approx {
+      font-size: .72rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .occ-approx i {
+      color: var(--secondary);
+      font-size: .65rem;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .cd-unit {
+      text-align: center;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 5px 8px;
+      min-width: 42px;
+    }
+
+    .cd-sep {
+      background: transparent;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--secondary);
+      min-width: auto;
+      padding: 0 1px;
+    }
+
+    .cd-num {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      display: block;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cd-label {
+      font-size: .57rem;
+      color: var(--gray);
+      display: block;
+      margin-top: 1px;
+    }
+
+    .past-badge {
+      display: inline-block;
+      background: var(--gray);
+      color: #fff;
+      font-size: .63rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .today-badge {
+      display: inline-block;
+      background: #22c55e;
+      color: #fff;
+      font-size: .67rem;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-weight: 800;
+    }
+
+    /* ─────── COMMITTEE STRUCTURE ─────── */
+    .cs-banner {
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 14px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-right: 5px solid var(--secondary);
+    }
+
+    .cs-banner i {
+      color: var(--secondary);
+      font-size: 1.4rem;
+    }
+
+    .cs-banner span {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .cs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .cs-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 4px solid var(--border);
+      transition: .3s;
+    }
+
+    .cs-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .cs-head {
+      border-top-color: var(--secondary);
+      background: linear-gradient(135deg, #fff 80%, rgba(201, 168, 106, .07));
+    }
+
+    .cs-avatar {
+      width: 56px;
+      height: 56px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 900;
+      font-size: 1.1rem;
+      border: 3px solid var(--secondary);
+    }
+
+    .cs-head .cs-avatar {
+      background: var(--secondary);
+      color: var(--primary);
+      width: 64px;
+      height: 64px;
+    }
+
+    .cs-role {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: .78rem;
+      font-weight: 800;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .cs-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .cs-tasks-title {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .cs-tasks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .cs-tasks li {
+      font-size: .82rem;
+      color: var(--gray);
+      line-height: 1.5;
+      padding-right: 14px;
+      position: relative;
+    }
+
+    .cs-tasks li::before {
+      content: '◆';
+      color: var(--secondary);
+      font-size: .5rem;
+      position: absolute;
+      right: 0;
+      top: 5px;
+    }
+
+    .cs-meta {
+      font-size: .74rem;
+      color: var(--gray);
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cs-meta i {
+      color: var(--secondary);
+    }
+
+    .cs-note {
+      background: rgba(201, 168, 106, .1);
+      border: 1px solid rgba(201, 168, 106, .3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .86rem;
+      line-height: 1.6;
+    }
+
+    .cs-note i {
+      color: var(--secondary);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ─────── CANVA EMBED ─────── */
+    .canva-wrap {
+      max-width: 960px;
+    }
+
+    .canva-ratio {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-top: 56.2225%;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+    }
+
+    .canva-ratio iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: none;
+    }
+
+    /* ─────── FOOTER ─────── */
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      padding: 20px 28px;
+      border-top: 3px solid var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 2px;
+      object-fit: contain;
+    }
+
+    .footer-brand span {
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .footer-copy {
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .45);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--white);
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .1);
+      font-size: 1rem;
+      transition: .3s;
+    }
+
+    .footer-social a:hover {
+      transform: translateY(-3px);
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+    }
+
+    .footer-social .sx:hover {
+      background: #000;
+    }
+
+    .footer-social .sig:hover {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .footer-social .stt:hover {
+      background: #010101;
+    }
+
+    .footer-social .syt:hover {
+      background: #f00;
+    }
+
+    /* ─────── MOBILE BOTTOM NAV ─────── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--primary);
+      border-top: 2px solid var(--secondary);
+      z-index: 950;
+      height: 58px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, .2);
+    }
+
+    .mobile-nav-inner {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .mobile-nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mbn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 66px;
+      padding: 5px 4px;
+      background: none;
+      border: none;
+      border-top: 2px solid transparent;
+      color: rgba(255, 255, 255, .5);
+      font-family: 'Tajawal', sans-serif;
+      font-size: .6rem;
+      font-weight: 700;
+      cursor: pointer;
+      gap: 3px;
+      flex-shrink: 0;
+      transition: .2s;
+    }
+
+    .mbn i {
+      font-size: 1.05rem;
+    }
+
+    .mbn.active {
+      color: var(--secondary);
+      border-top-color: var(--secondary);
+      background: rgba(201, 168, 106, .08);
+    }
+
+    /* ─────── MOBILE OVERLAY SIDEBAR ─────── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .45);
+      z-index: 800;
+    }
+
+    /* ─────── BREADCRUMB ─────── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .8rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb span {
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    .breadcrumb i {
+      font-size: .65rem;
+      color: var(--border);
+    }
+
+    /* ─────── INFO BOX ─────── */
+    .info-box {
+      background: rgba(201, 168, 106, .1);
+      border: 1px solid rgba(201, 168, 106, .3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .87rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .info-box i {
+      color: var(--secondary);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ─────── RESPONSIVE ─────── */
+    @media(max-width:1024px) {
+      :root {
+        --sidebar-w: 200px;
+      }
+
+      .page {
+        padding: 28px 24px 60px;
+      }
+    }
+
+    @media(max-width:768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .sidebar.mobile-open {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 850;
+        width: 260px;
+        height: 100vh;
+        box-shadow: -6px 0 30px rgba(0, 0, 0, .2);
+      }
+
+      .sidebar-overlay.open {
+        display: block;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .topnav-links {
+        display: none;
+      }
+
+      .topnav {
+        padding: 0 16px;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .page {
+        padding: 20px 16px 80px;
+      }
+
+      .page-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .policy-tabs-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+
+      .policy-tabs-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .ptab {
+        white-space: nowrap;
+      }
+
+      .policy-card {
+        padding: 18px;
+      }
+
+      .org-committees {
+        flex-direction: column;
+      }
+
+      .org-col {
+        min-width: unset;
+        max-width: 100%;
+      }
+
+      .occ-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .occ-card {
+        padding: 12px 10px;
+      }
+
+      .cd-unit {
+        min-width: 32px;
+        padding: 4px 5px;
+      }
+
+      .cd-num {
+        font-size: 1rem;
+      }
+
+      .cs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding-bottom: 80px;
+      }
+
+      .footer-brand,
+      .footer-social {
+        justify-content: center;
+      }
+
+      .vio-table {
+        font-size: .72rem;
+      }
+
+      .vio-table th,
+      .vio-table td {
+        padding: 5px 6px;
+      }
+
+      .canva-wrap {
+        max-width: 100%;
+      }
+    }
+
+    @media(max-width:480px) {
+      .occ-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── LOGIN OVERLAY ─── */
+    #loginOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, #0d2137 0%, #1f3b58 60%, #0d2137 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity .5s ease, visibility .5s ease;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #loginOverlay.hiding {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(201, 168, 106, 0.3);
+      border-radius: 20px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 430px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, .5), 0 0 0 1px rgba(201, 168, 106, .1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: loginIn .45s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    @keyframes loginIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .login-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+      padding: 5px;
+      box-shadow: 0 0 24px rgba(201, 168, 106, .45);
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .login-title {
+      text-align: center;
+      color: #fff;
+    }
+
+    .login-title h2 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .login-title p {
+      font-size: .82rem;
+      color: rgba(201, 168, 106, .85);
+      font-weight: 500;
+    }
+
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .lf-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .lf-group label {
+      font-size: .8rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .65);
+    }
+
+    .lf-group input {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: 10px;
+      padding: 13px 14px;
+      color: #fff;
+      font-size: .92rem;
+      font-family: 'Tajawal', sans-serif;
+      outline: none;
+      transition: .25s;
+    }
+
+    .lf-group input::placeholder {
+      color: rgba(255, 255, 255, .3);
+    }
+
+    .lf-group input:focus {
+      border-color: var(--secondary);
+      background: rgba(255, 255, 255, .12);
+      box-shadow: 0 0 12px rgba(201, 168, 106, .2);
+    }
+
+    .lf-group input.invalid {
+      border-color: #f05050;
+    }
+
+    .login-err {
+      background: rgba(240, 80, 80, .15);
+      border: 1px solid rgba(240, 80, 80, .4);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #fca5a5;
+      font-size: .83rem;
+      text-align: center;
+      display: none;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-6px);
+      }
+
+      75% {
+        transform: translateX(6px);
+      }
+    }
+
+    .login-btn {
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+      color: var(--primary);
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 1rem;
+      font-weight: 900;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+      transition: .25s;
+      width: 100%;
+      box-shadow: 0 6px 20px rgba(201, 168, 106, .3);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(201, 168, 106, .4);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .admin-badge {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      background: rgba(201, 168, 106, .18);
+      border: 1px solid rgba(201, 168, 106, .35);
+      padding: 4px 12px;
+      border-radius: 20px;
+      color: var(--secondary);
+      font-size: .78rem;
+      font-weight: 800;
+      animation: badgeSlide .4s ease;
+    }
+
+    @keyframes badgeSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .user-pill {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 5px 13px;
+      border-radius: 20px;
+      color: rgba(255, 255, 255, .75);
+      font-size: .8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .3s;
+      animation: userPillIn .4s ease;
+      position: relative;
+    }
+
+    @keyframes userPillIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .user-pill:hover {
+      background: rgba(255, 255, 255, .15);
+      border-color: rgba(255, 255, 255, .25);
+      transform: translateY(-2px);
+    }
+
+    .user-pill:hover::after {
+      content: 'اضغط للخروج';
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.85);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: .7rem;
+      white-space: nowrap;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .user-pill i {
+      color: var(--secondary);
+      font-size: .85rem;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    @media(max-width:480px) {
+      .login-card {
+        padding: 32px 22px;
+      }
+
+      .login-title h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="locked">
+
+  <!-- ═══════════════════ LOGIN OVERLAY ═══════════════════ -->
+  <div id="loginOverlay">
+    <div class="login-card">
+      <img class="login-logo" src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ"
+        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3214/3214736.png'">
+      <div class="login-title">
+        <h2>مرحباً بك في نادي آفاق</h2>
+        <p>يُرجى تسجيل الدخول للمتابعة</p>
+      </div>
+      <form class="login-form" id="loginForm" autocomplete="off" onsubmit="handleLogin(event)">
+        <div class="lf-group">
+          <label for="lf-user">اسم المستخدم</label>
+          <input id="lf-user" type="text" placeholder="أدخل اسم المستخدم" required autocomplete="username">
+        </div>
+        <div class="lf-group">
+          <label for="lf-pass">كلمة المرور</label>
+          <input id="lf-pass" type="password" placeholder="••••••••••" required autocomplete="current-password">
+        </div>
+        <div class="login-err" id="loginErr">بيانات الدخول غير صحيحة، يُرجى المحاولة مجدداً</div>
+        <button class="login-btn" type="submit"><i class="fa-solid fa-right-to-bracket"></i> دخول</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ TOP NAV ═══════════════════ -->
+  <nav class="topnav">
+    <div class="topnav-logo">
+      <img src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ"
+        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3214/3214736.png'">
+      <div class="brand">
+        <h1>نادي آفاق</h1>
+        <p>اللجنة الإعلامية</p>
+      </div>
+    </div>
+
+    <div id="userPill" class="user-pill"><i class="fa-solid fa-circle-user"></i><span id="userPillName"></span><i class="fa-solid fa-right-from-bracket" style="margin-left: 4px; font-size: 0.75rem;"></i></div>
+    <div id="adminBadge" class="admin-badge"><i class="fa-solid fa-shield-halved"></i> إشراف</div>
+    <div class="topnav-links">
+      <a href="#" class="active" data-page="tasks"><i class="fa-solid fa-list-check"></i> المهام</a>
+      <a href="#" data-page="services"><i class="fa-solid fa-globe"></i> الخدمات</a>
+      <a href="#" data-page="policies"><i class="fa-solid fa-scale-balanced"></i> السياسات</a>
+      <a href="#" data-page="org"><i class="fa-solid fa-sitemap"></i> الهيكل</a>
+      <a href="#" data-page="calendar"><i class="fa-solid fa-calendar-days"></i> التقويم</a>
+      <a href="#" data-page="occasions"><i class="fa-solid fa-star"></i> المناسبات</a>
+      <a href="#" data-page="committee"><i class="fa-solid fa-users"></i> هيكل اللجنة</a>
+      <a href="#" data-page="news"><i class="fa-solid fa-newspaper"></i> الأخبار</a>
+      <a href="#" data-page="authorized"><i class="fa-solid fa-user-shield"></i> المصرح لهم</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="قائمة">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ═══════════════════ LAYOUT ═══════════════════ -->
+  <div class="wrapper">
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <p>التنقل</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="active" data-page="tasks"><i class="fa-solid fa-list-check"></i> المهام</a>
+        <a href="#" data-page="services"><i class="fa-solid fa-globe"></i> الخدمات الإلكترونية</a>
+        <div class="sidebar-divider"></div>
+        <a href="#" data-page="policies"><i class="fa-solid fa-scale-balanced"></i> السياسات العامة</a>
+        <a href="#" data-page="org"><i class="fa-solid fa-sitemap"></i> الهيكل التنظيمي</a>
+        <a href="#" data-page="calendar"><i class="fa-solid fa-calendar-days"></i> التقويم الزمني</a>
+        <div class="sidebar-divider"></div>
+        <a href="#" data-page="occasions"><i class="fa-solid fa-star"></i> المناسبات</a>
+        <a href="#" data-page="committee"><i class="fa-solid fa-users"></i> هيكل اللجنة</a>
+        <a href="#" data-page="news"><i class="fa-solid fa-newspaper"></i> أخبار اللجنة</a>
+        <a href="#" data-page="authorized"><i class="fa-solid fa-user-shield"></i> المصرح لهم</a>
+      </nav>
+    </aside>
+
+    <!-- ─── MAIN ─── -->
+    <main class="main-content">
+
+      <!-- ══ PAGE: TASKS ══ -->
+      <section class="page active" id="page-tasks">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>مهام
+            اللجنة</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-list-check"></i> مهام اللجنة الإعلامية</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="canva-wrap">
+          <div class="canva-ratio">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAHC0zoHIw0/337bDh3hQ6kiD8SGKs8JdA/view?embed"
+              allowfullscreen allow="fullscreen"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE: SERVICES ══ -->
+      <section class="page" id="page-services">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>الخدمات
+            الإلكترونية</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-globe"></i> الخدمات الإلكترونية</h2>
+          <p>جميع الروابط والأدوات التي تحتاجها اللجنة في مكان واحد</p>
+          <div class="divider"></div>
+        </div>
+        <div class="cards-grid">
+          <a href="https://forms.gle/upxsRJjbBiJSdGjHA" target="_blank" class="svc-card">
+            <i class="fa-solid fa-pen-nib"></i>
+            <h3>تسليم نصوص المحتوى</h3>
+            <p>نموذج مخصص لرفع ومراجعة النصوص والمحتوى المكتوب.</p>
+          </a>
+          <a href="https://forms.gle/esh6sG3XDi2jFjMdA" target="_blank" class="svc-card">
+            <i class="fa-solid fa-certificate"></i>
+            <h3>تسليم شهادات الدورات</h3>
+            <p>نموذج لرفع شهادات الأعضاء لاعتمادها رسمياً.</p>
+          </a>
+          <a href="https://forms.gle/Mv1UKJEejq4svLdk6" target="_blank" class="svc-card">
+            <i class="fa-solid fa-comments"></i>
+            <h3>الشكاوى والاقتراحات</h3>
+            <p>نستقبل ملاحظاتكم وأفكاركم التطويرية بسرية تامة.</p>
+          </a>
+          <a href="https://discord.gg/KjTdUC2PZj" target="_blank" class="svc-card">
+            <i class="fa-brands fa-discord" style="color:#5865F2"></i>
+            <h3>خادم ديسكورد</h3>
+            <p>منصة التواصل الصوتي والتفاعل المباشر.</p>
+          </a>
+          <a href="https://www.notion.so/invite/8e4ad040d1c5dda16607269e4429a505b25cd56a" target="_blank"
+            class="svc-card">
+            <i class="fa-solid fa-note-sticky"></i>
+            <h3>مساحة نوشن</h3>
+            <p>إدارة المشاريع، توثيق المهام، وتنظيم العمل.</p>
+          </a>
+          <a href="https://drive.google.com/drive/folders/1we8QmcUQbgy_0pvvHK7ZQut2uQtsH8PM?usp=sharing" target="_blank"
+            class="svc-card">
+            <i class="fa-brands fa-google-drive" style="color:#34A853"></i>
+            <h3>جوجل درايف</h3>
+            <p>المجلد السحابي المشترك لتخزين الملفات.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- ══ PAGE: POLICIES ══ -->
+      <section class="page" id="page-policies">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>السياسات
+            العامة</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-scale-balanced"></i> السياسات العامة</h2>
+          <p>الإصدار الثالث – معتمد بتاريخ 22 فبراير 2026</p>
+          <div class="divider"></div>
+        </div>
+
+        <div class="policy-tabs-row">
+          <button class="ptab active" onclick="showPolicy('pp1',this)"><i class="fa-solid fa-scale-balanced"></i>
+            الالتزام العام</button>
+          <button class="ptab" onclick="showPolicy('pp2',this)"><i class="fa-solid fa-handshake"></i> السلوك</button>
+          <button class="ptab" onclick="showPolicy('pp3',this)"><i class="fa-solid fa-id-card"></i> العضوية</button>
+          <button class="ptab" onclick="showPolicy('pp4',this)"><i class="fa-solid fa-flag"></i> التمثيل</button>
+          <button class="ptab" onclick="showPolicy('pp5',this)"><i class="fa-solid fa-calendar-check"></i>
+            الأنشطة</button>
+          <button class="ptab" onclick="showPolicy('pp6',this)"><i class="fa-solid fa-user-tie"></i> المسؤوليات</button>
+          <button class="ptab" onclick="showPolicy('pp7',this)"><i class="fa-solid fa-shield-halved"></i>
+            الخصوصية</button>
+          <button class="ptab" onclick="showPolicy('pp8',this)"><i class="fa-solid fa-gavel"></i> المخالفات</button>
+          <button class="ptab" onclick="showPolicy('pp9',this)"><i class="fa-solid fa-lightbulb"></i> التطوير</button>
+        </div>
+
+        <div class="policy-panel active" id="pp1">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-scale-balanced"></i> سياسة الالتزام العام</h3>
+            <p class="policy-intro">يُلزم جميع منسوبي نادي آفاق بالأنظمة والتعليمات الواردة في هذه اللائحة، وتُعدّ هذه
+              السياسات مرجعاً تنظيمياً ملزماً للجميع دون استثناء.</p>
+            <ul class="policy-points">
+              <li>يلتزم جميع منسوبي نادي آفاق، أعضاء وإداريين، بالأنظمة والتعليمات الواردة في هذه اللائحة.</li>
+              <li>تُعدّ هذه السياسات مرجعاً تنظيمياً ملزماً، ويُعتبر الجهل بها غير مبرر لمخالفتها.</li>
+              <li>يُطبَّق مبدأ العدالة والمساواة على الجميع دون استثناء بصرف النظر عن المنصب أو الصلاحية.</li>
+              <li>يُعمل بهذه اللائحة من تاريخ اعتمادها وهي جزء لا يتجزأ من هوية النادي التنظيمية.</li>
+              <li>يلتزم جميع الأعضاء بما ورد فيها دون استثناء.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp2">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-handshake"></i> سياسة السلوك والاحترام</h3>
+            <p class="policy-intro">يقوم التعامل داخل نادي آفاق على أسس الاحترام المتبادل والتعاون البنّاء، ويُمنع كل ما
+              من شأنه الإخلال بالبيئة الآمنة والمحفّزة.</p>
+            <ul class="policy-points">
+              <li>يقوم التعامل بين أعضاء النادي على الاحترام والتعاون.</li>
+              <li>يُمنع أي سلوك يتضمن إساءة، تنمر، تحقير، استفزاز، أو إثارة نزاعات بين الأعضاء.</li>
+              <li>يُحظر استخدام ألفاظ غير لائقة أو محتوى يخالف القيم العامة داخل جميع منصات النادي.</li>
+              <li>يُدار الاختلاف في الآراء بأسلوب حضاري دون تصعيد أو إساءة.</li>
+              <li>الانتقاد البنّاء مقبول ومُشجَّع أما الهجوم الشخصي فمرفوض ويُعاقب عليه.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp3">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-id-card"></i> سياسة العضوية والانتماء</h3>
+            <p class="policy-intro">العضوية في نادي آفاق تطوعية وتخضع لضوابط واضحة تضمن الانسجام مع قيم النادي ومبادئه.
+            </p>
+            <ul class="policy-points">
+              <li>العضوية تطوعية ومرتبطة بالالتزام بقيم النادي وسياساته.</li>
+              <li>يحق للإدارة قبول أو رفض العضوية وفق الضوابط المعتمدة دون إلزام بتوضيح الأسباب.</li>
+              <li>يلتزم العضو بالحفاظ على سمعة النادي وعدم الإضرار به قولاً أو فعلاً.</li>
+              <li>الانتماء للنادي لا يمنح أي صفة تمثيلية إلا بتكليف رسمي.</li>
+              <li>يحق للعضو الانسحاب بإشعار إداري مسبق، ويمكن إعادة قبول المنسحب بقرار خاص.</li>
+              <li>للإدارة تعليق أو إنهاء العضوية عند مخالفة السياسات.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp4">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-flag"></i> سياسة التمثيل واستخدام الاسم</h3>
+            <p class="policy-intro">يُمنع استخدام اسم نادي آفاق أو شعاره أو هويته إلا بإذن رسمي صريح من الإدارة العليا.
+            </p>
+            <ul class="policy-points">
+              <li>يُمنع استخدام اسم نادي آفاق أو شعاره أو هويته البصرية إلا بإذن رسمي.</li>
+              <li>أي مشاركة خارجية باسم النادي يجب أن تكون معتمدة مسبقاً من الإدارة.</li>
+              <li>يتحمل العضو المسؤولية الكاملة عن تصرفاته عند تمثيل النادي.</li>
+              <li>يُمنع تنفيذ أي نشاط باسم النادي دون اعتماد مسبق.</li>
+              <li>المشاركة في المسابقات والفعاليات الخارجية تتم عبر القنوات المعتمدة فقط.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp5">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-calendar-check"></i> سياسة الأنشطة والمشاركات</h3>
+            <p class="policy-intro">تخضع جميع الأنشطة والفعاليات والمبادرات للموافقة التنظيمية لضمان اتساقها مع أهداف
+              النادي ومبادئه.</p>
+            <ul class="policy-points">
+              <li>تخضع جميع الأنشطة والفعاليات والمبادرات للموافقة التنظيمية من الجهات المختصة.</li>
+              <li>يجب أن تكون الأنشطة متوافقة مع أهداف النادي ومبادئه الخمسة.</li>
+              <li>تُنظَّم المشاركات في المسابقات والفعاليات الخارجية عبر القنوات المعتمدة.</li>
+              <li>يُمنع تنفيذ أي نشاط باسم النادي دون اعتماد مسبق من الإدارة.</li>
+              <li>يحق للإدارة إيقاف أي نشاط يتعارض مع سياسات النادي.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp6">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-user-tie"></i> سياسة المسؤوليات الإدارية</h3>
+            <p class="policy-intro">جميع المناصب داخل النادي تكليف تنظيمي وليست امتيازاً شخصياً، وتترتب عليها مسؤوليات
+              واضحة.</p>
+            <ul class="policy-points">
+              <li>جميع المناصب داخل النادي تكليف تنظيمي وليست امتيازاً شخصياً.</li>
+              <li>يلتزم الإداري بتنفيذ المهام الموكلة إليه ضمن صلاحياته المحددة.</li>
+              <li>يُحاسب أي إداري يثبت تقصيره أو إساءة استخدام صلاحياته.</li>
+              <li>يحق للإدارة العليا إعادة التسكين أو الإعفاء عند الحاجة.</li>
+              <li>الغياب المتكرر عن الاجتماعات دون عذر يُعدّ مخالفة إدارية.</li>
+              <li>لا يجوز لأي إداري منح الوسام لنفسه أو اتخاذ قرار خارج صلاحياته.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp7">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-shield-halved"></i> سياسة الخصوصية والمعلومات</h3>
+            <p class="policy-intro">تُحترم خصوصية الأعضاء وتُستخدم بياناتهم للأغراض التنظيمية فقط، ويُمنع تسريب أي
+              معلومات داخلية.</p>
+            <ul class="policy-points">
+              <li>تُحترم خصوصية الأعضاء وعدم تداول أي معلومات شخصية دون إذن صريح.</li>
+              <li>يُمنع تسريب المحادثات أو الوثائق أو المحتوى الداخلي للنادي.</li>
+              <li>تُستخدم بيانات الأعضاء للأغراض التنظيمية فقط ولا تُشارك مع أطراف خارجية.</li>
+              <li>تسريب المحادثات الداخلية يُعدّ مخالفة جسيمة وقد تصل عقوبتها للإبعاد.</li>
+              <li>أي محتوى خاص بالنادي (تصاميم، وثائق، خطط) يخضع لحقوق الملكية الفكرية للنادي.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp8">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-gavel"></i> سياسة المخالفات والانضباط</h3>
+            <p class="policy-intro">تُسجَّل المخالفات رسمياً وتُطبَّق العقوبات بشكل تدريجي وعادل حسب درجة المخالفة.</p>
+            <ul class="policy-points">
+              <li>تُسجَّل جميع المخالفات بشكل رسمي وواضح.</li>
+              <li>يُبلَّغ العضو أو الإداري بالمخالفة والعقوبة المترتبة عليها.</li>
+              <li>تكرار المخالفة يضاعف العقوبة وقد يصل إلى الإبعاد النهائي.</li>
+              <li>للإدارة العليا الحق في تجاوز التدرج في حال المخالفات الجسيمة.</li>
+              <li>الإبعاد النهائي يمنع العودة إلا بقرار خاص من الإدارة العليا.</li>
+            </ul>
+            <div class="vio-section">
+              <h4>📋 المخالفات البسيطة</h4>
+              <table class="vio-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>المخالفة</th>
+                    <th>الوصف</th>
+                    <th>العقوبة الأولى</th>
+                    <th>التكرار</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>ألفاظ غير لائقة خفيفة</td>
+                    <td>كلمات غير مناسبة دون إساءة مباشرة</td>
+                    <td><span class="badge badge-warn">تنبيه شفهي</span></td>
+                    <td><span class="badge badge-alert">إنذار مكتوب</span></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>الخروج عن النقاش</td>
+                    <td>تشويش النقاشات أو تعطيلها</td>
+                    <td><span class="badge badge-warn">تنبيه شفهي</span></td>
+                    <td><span class="badge badge-alert">إنذار</span></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>تجاهل التعليمات</td>
+                    <td>عدم الالتزام بتوجيه إداري بسيط</td>
+                    <td><span class="badge badge-warn">تنبيه</span></td>
+                    <td><span class="badge badge-alert">إنذار</span></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>الإزعاج المتكرر</td>
+                    <td>سبام، منشن متكرر، أو إزعاج صوتي</td>
+                    <td><span class="badge badge-warn">تنبيه</span></td>
+                    <td><span class="badge badge-alert">كتم مؤقت</span></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>تأخر إداري</td>
+                    <td>تأخر متكرر عن المهام أو الاجتماعات</td>
+                    <td><span class="badge badge-warn">تنبيه</span></td>
+                    <td><span class="badge badge-alert">إنذار</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4>⚠️ المخالفات المتوسطة</h4>
+              <table class="vio-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>المخالفة</th>
+                    <th>الوصف</th>
+                    <th>العقوبة الأولى</th>
+                    <th>التكرار</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>6</td>
+                    <td>إساءة لفظية</td>
+                    <td>التقليل أو السخرية من عضو</td>
+                    <td><span class="badge badge-alert">إنذار مكتوب</span></td>
+                    <td><span class="badge badge-ban">تعليق مؤقت</span></td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>إثارة نزاعات</td>
+                    <td>خلق مشاكل أو تحريض بين الأعضاء</td>
+                    <td><span class="badge badge-alert">إنذار</span></td>
+                    <td><span class="badge badge-ban">تعليق مؤقت</span></td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>انتحال صفة إدارية</td>
+                    <td>ادعاء صلاحيات غير مخولة</td>
+                    <td><span class="badge badge-alert">إنذار</span></td>
+                    <td><span class="badge badge-ban">تعليق</span></td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>عدم احترام الإداريين</td>
+                    <td>رفض الأوامر أو الجدال غير اللائق</td>
+                    <td><span class="badge badge-alert">إنذار</span></td>
+                    <td><span class="badge badge-ban">تعليق</span></td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>إساءة استخدام المنصات</td>
+                    <td>استخدام القنوات بشكل مخالف</td>
+                    <td><span class="badge badge-alert">كتم/إنذار</span></td>
+                    <td><span class="badge badge-ban">تعليق</span></td>
+                  </tr>
+                  <tr>
+                    <td>11</td>
+                    <td>تمثيل النادي دون إذن</td>
+                    <td>المشاركة باسم آفاق دون اعتماد</td>
+                    <td><span class="badge badge-alert">إنذار</span></td>
+                    <td><span class="badge badge-ban">تعليق</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <h4>🚫 المخالفات الجسيمة</h4>
+              <table class="vio-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>المخالفة</th>
+                    <th>الوصف</th>
+                    <th>العقوبة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>12</td>
+                    <td>التنمر أو الإهانة</td>
+                    <td>إساءة نفسية أو لفظية متعمدة</td>
+                    <td><span class="badge badge-ban">تعليق أو إبعاد</span></td>
+                  </tr>
+                  <tr>
+                    <td>13</td>
+                    <td>نشر محتوى مخالف</td>
+                    <td>محتوى أخلاقي أو تحريضي</td>
+                    <td><span class="badge badge-ban">تعليق فوري</span></td>
+                  </tr>
+                  <tr>
+                    <td>14</td>
+                    <td>تسريب محادثات داخلية</td>
+                    <td>نشر محتوى خاص بالنادي</td>
+                    <td><span class="badge badge-ban">إبعاد مباشر</span></td>
+                  </tr>
+                  <tr>
+                    <td>15</td>
+                    <td>تشويه سمعة النادي</td>
+                    <td>الإساءة العلنية للنادي</td>
+                    <td><span class="badge badge-ban">إبعاد</span></td>
+                  </tr>
+                  <tr>
+                    <td>16</td>
+                    <td>استغلال المنصب</td>
+                    <td>استخدام الصلاحيات لمصلحة شخصية</td>
+                    <td><span class="badge badge-ban">إعفاء + تعليق</span></td>
+                  </tr>
+                  <tr>
+                    <td>17</td>
+                    <td>التحرش اللفظي أو السلوكي</td>
+                    <td>أي تصرف غير لائق أو مسيء</td>
+                    <td><span class="badge badge-ban">إبعاد فوري</span></td>
+                  </tr>
+                  <tr>
+                    <td>18</td>
+                    <td>التهديد أو الابتزاز</td>
+                    <td>تهديد الأعضاء أو الإداريين</td>
+                    <td><span class="badge badge-ban">إبعاد + تصعيد</span></td>
+                  </tr>
+                  <tr>
+                    <td>19</td>
+                    <td>التزوير أو الكذب الإداري</td>
+                    <td>تقديم معلومات مضللة عمداً</td>
+                    <td><span class="badge badge-ban">إعفاء وإبعاد</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="policy-panel" id="pp9">
+          <div class="policy-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> سياسة التطوير والتحديث</h3>
+            <p class="policy-intro">يُشجّع نادي آفاق المبادرات والأفكار التطويرية، وللإدارة حق تعديل السياسات بما يخدم
+              مصلحة النادي والأعضاء.</p>
+            <ul class="policy-points">
+              <li>يُشجّع نادي آفاق المبادرات والأفكار التطويرية من جميع الأعضاء.</li>
+              <li>يحق للإدارة تعديل السياسات بما يخدم مصلحة النادي والأعضاء.</li>
+              <li>يتم إشعار الأعضاء بأي تحديث أو تعديل رسمي عبر القنوات المعتمدة.</li>
+              <li>أي عضو يرغب في اقتراح تطوير يمكنه تقديم المقترح عبر نموذج الشكاوى والاقتراحات.</li>
+              <li>هذه السياسات جزء حي من النادي وليست نصوصاً جامدة بل تتطور مع تطور النادي.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE: ORG ══ -->
+      <section class="page" id="page-org">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>الهيكل
+            التنظيمي</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-sitemap"></i> الهيكل التنظيمي</h2>
+          <p>الإصدار الثالث – الهيكل الرسمي لنادي آفاق</p>
+          <div class="divider"></div>
+        </div>
+        <div class="org-wrap">
+          <div class="org-box">رئيس النادي</div>
+          <div class="org-line"></div>
+          <div class="org-level">
+            <div class="org-box" style="font-size:.9rem">نائب الرئيس</div>
+            <div class="org-box" style="font-size:.9rem">نائب الرئيس للتقنية</div>
+            <div class="org-box" style="font-size:.9rem">نائب الرئيس للأعضاء</div>
+          </div>
+          <div class="org-line"></div>
+          <div class="org-committees">
+            <div class="org-col">
+              <div class="org-col-title">اللجنة الإعلامية</div>
+              <div class="org-role">رئيس اللجنة الإعلامية</div>
+              <div class="org-role">مسؤول التصميم والمونتاج</div>
+              <div class="org-role">مسؤول المحتوى</div>
+            </div>
+            <div class="org-col">
+              <div class="org-col-title">لجنة التشغيل</div>
+              <div class="org-role">قائد فريق اقرا</div>
+              <div class="org-role">قائد فريق الفنون</div>
+              <div class="org-role">قائد فريق الرياضات الإلكترونية</div>
+              <div class="org-role">قائد الفريق العلمي / الانمي / الشطرنج</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE: CALENDAR ══ -->
+      <section class="page" id="page-calendar">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>التقويم
+            الزمني</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-calendar-days"></i> التقويم الزمني</h2>
+          <p>جدول الفعاليات والأنشطة القادمة</p>
+          <div class="divider"></div>
+        </div>
+        <div class="cal-wrap">
+          <iframe src="https://calendar.google.com/calendar/embed?src=afaq.sa.club%40gmail.com&ctz=Asia%2FRiyadh"
+            height="560" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </section>
+
+      <!-- ══ PAGE: OCCASIONS ══ -->
+      <section class="page" id="page-occasions">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i
+            class="fa-solid fa-chevron-left"></i><span>المناسبات</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-star"></i> المناسبات والأيام المتبقية</h2>
+          <p>عدّ تنازلي حي لجميع المناسبات المحتفل بها في نادي آفاق</p>
+          <div class="divider"></div>
+        </div>
+        <div class="info-box"><i class="fa-solid fa-circle-info"></i> المناسبات ذات الإطار المنقّط (رمضان، الأعياد، رأس
+          السنة الهجرية) تواريخها تقريبية بناءً على الحساب الفلكي لعام 2026.</div>
+        <div class="occ-grid" id="occGrid"><!-- JS --></div>
+      </section>
+
+      <!-- ══ PAGE: COMMITTEE ══ -->
+      <section class="page" id="page-committee">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>هيكل
+            اللجنة</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-users"></i> هيكل اللجنة الإعلامية</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="cs-banner"><i class="fa-solid fa-bullhorn"></i><span>الدورة الأولى 2026 — من يناير حتى أبريل</span>
+        </div>
+        <div class="cs-grid">
+          <div class="cs-card cs-head">
+            <div class="cs-avatar">عق</div>
+            <span class="cs-role">رئيس اللجنة</span>
+            <div class="cs-name">عمر قاسم الهوساوي</div>
+            <div class="cs-tasks-title"><i class="fa-solid fa-list-check"></i> المهام</div>
+            <ul class="cs-tasks">
+              <li>إدارة وسائل التواصل الاجتماعي للنادي</li>
+              <li>الإشراف العام على أعمال اللجنة الإعلامية</li>
+              <li>التنسيق مع الإدارة العليا للنادي</li>
+              <li>اعتماد المحتوى قبل النشر</li>
+              <li>متابعة أداء أعضاء اللجنة وتقييمهم</li>
+              <li>تقديم طلبات المساعدين المؤقتين عند الحاجة</li>
+            </ul>
+            <div class="cs-meta"><i class="fa-solid fa-calendar-days"></i> تكليف رسمي – الدورة الأولى 2026</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-avatar">صت</div>
+            <span class="cs-role" style="background:#1a5276">مسؤول التصميم والمونتاج</span>
+            <div class="cs-name">صهيب تركي آل احمد</div>
+            <div class="cs-tasks-title"><i class="fa-solid fa-list-check"></i> المهام</div>
+            <ul class="cs-tasks">
+              <li>تصميم المنشورات والمواد البصرية للنادي</li>
+              <li>إنتاج مقاطع الموشن جرافيك والمونتاج</li>
+              <li>الحفاظ على هوية النادي البصرية</li>
+              <li>تطوير القوالب التصميمية الثابتة للنادي</li>
+              <li>تنسيق المواد المرئية مع كاتب المحتوى</li>
+            </ul>
+            <div class="cs-meta"><i class="fa-solid fa-star"></i> صفة: عضو</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-avatar">عح</div>
+            <span class="cs-role" style="background:#154360">مسؤول كتابة المحتوى</span>
+            <div class="cs-name">عبدالرحمن حسام الحربي</div>
+            <div class="cs-tasks-title"><i class="fa-solid fa-list-check"></i> المهام</div>
+            <ul class="cs-tasks">
+              <li>كتابة النصوص والتسميات التوضيحية للمنشورات</li>
+              <li>إعداد الخطة التحريرية الشهرية</li>
+              <li>صياغة الإعلانات والتنبيهات الرسمية</li>
+              <li>مراجعة المحتوى المكتوب قبل رفعه للرئيس</li>
+              <li>توثيق أعمال اللجنة وإعداد التقارير</li>
+            </ul>
+            <div class="cs-meta"><i class="fa-solid fa-star"></i> صفة: عضو</div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-avatar">غع</div>
+            <span class="cs-role" style="background:#1b4f72">كتابة المحتوى والتصميم</span>
+            <div class="cs-name">غسان عصام عقيل</div>
+            <div class="cs-tasks-title"><i class="fa-solid fa-list-check"></i> المهام</div>
+            <ul class="cs-tasks">
+              <li>كتابة محتوى المنشورات والتعليقات</li>
+              <li>دعم فريق التصميم في إنتاج المواد البصرية</li>
+              <li>المساهمة في تطوير أفكار الحملات الإعلامية</li>
+              <li>المشاركة في إنتاج المحتوى المرئي عند الحاجة</li>
+            </ul>
+            <div class="cs-meta"><i class="fa-solid fa-star"></i> صفة: عضو</div>
+          </div>
+        </div>
+        <div class="cs-note"><i class="fa-solid fa-circle-info"></i><span>يحق لرئيس اللجنة تقديم طلب إضافة <strong>مساعد
+              مؤقت</strong> حسب النموذج المعتمد مع تحديد مدة التكليف ومهامه بدقة.</span></div>
+      </section>
+
+      <!-- ══ PAGE: NEWS ══ -->
+      <section class="page" id="page-news">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>أخبار
+            اللجنة</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-newspaper"></i> أخبار اللجنة</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="canva-wrap">
+          <div class="canva-ratio">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAHC0kTliGA/GphOebbxmJCQJGT7Nd95qw/view?embed"
+              allowfullscreen allow="fullscreen"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PAGE: AUTHORIZED USERS ══ -->
+      <section class="page" id="page-authorized">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>المصرح
+            لهم بالدخول</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-user-shield"></i> المصرح لهم بالدخول</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="table-wrap">
+          <table class="auth-table">
+            <thead>
+              <tr>
+                <th>الاسم الثلاثي</th>
+                <th>اسم المستخدم</th>
+                <th>كلمة المرور</th>
+                <th>اشراف</th>
+                <th>المهمة</th>
+                <th>الصفة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>صهيب تركي ال احمد</td>
+                <td>AFAQ_Sohaib_4519082</td>
+                <td>Afaq@S53nR8</td>
+                <td></td>
+                <td>مصمم</td>
+                <td>رئيس اللجنة الإعلامية</td>
+              </tr>
+              <tr>
+                <td>عمر قاس هوساوي</td>
+                <td>AFAQ_Omar_2146895</td>
+                <td>Afaq@O14tX9</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i></span></td>
+                <td>إدارة وسائل التواصل الاجتماعي</td>
+                <td>عضو اللجنة الإعلامية</td>
+              </tr>
+              <tr>
+                <td>غسان عصام عقيل</td>
+                <td>AFAQ_Ghassan_7635029</td>
+                <td>Afaq@G92kL4</td>
+                <td></td>
+                <td>كاتب - مصمم</td>
+                <td>عضو اللجنة الإعلامية</td>
+              </tr>
+              <tr>
+                <td>عبدالرحمن حسام الحربي</td>
+                <td>AFAQ_Abdulrahman_227434</td>
+                <td>Afaq@jdkf3r</td>
+                <td></td>
+                <td>مصمم</td>
+                <td>عضو اللجنة الإعلامية</td>
+              </tr>
+              <tr>
+                <td>حسين عبدالله المانع</td>
+                <td>AFAQ_Hussain_4827193</td>
+                <td>Afaq@H23mL9</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i></span></td>
+                <td>-</td>
+                <td>رئيس النادي</td>
+              </tr>
+              <tr>
+                <td>دُنا فيصل الغامدي</td>
+                <td>AFAQ_Dana_9073164</td>
+                <td>Afaq@D78kP2</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i></span></td>
+                <td>-</td>
+                <td>نائبة رئيس النادي</td>
+              </tr>
+              <tr>
+                <td>نضال جميل سندي</td>
+                <td>AFAQ_Nedal_5612849</td>
+                <td>Afaq@N45xQ7</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i></span></td>
+                <td>-</td>
+                <td>نائب رئيس النادي لشؤون الأعضاء</td>
+              </tr>
+              <tr>
+                <td>ميار محمد الزهراني</td>
+                <td>AFAQ_Mayar_1946728</td>
+                <td>Afaq@M62rL8</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i></span></td>
+                <td>-</td>
+                <td>نائبة رئيس النادي لشؤون الأعضاء</td>
+              </tr>
+              <tr>
+                <td>تركي عصام الغامدي</td>
+                <td>AFAQ_Turki_1365948</td>
+                <td>Afaq@T46rH8</td>
+                <td><span class="check"><i class="fa-solid fa-check"></i></span></td>
+                <td>-</td>
+                <td>نائب رئيس النادي للشؤون التقنية</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="footer-brand">
+      <img src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ"
+        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3214/3214736.png'">
+      <span>نادي آفاق — اللجنة الإعلامية</span>
+    </div>
+    <p class="footer-copy">جميع الحقوق محفوظة © 2026 نادي آفاق</p>
+    <div class="footer-social">
+      <a href="https://x.com/Afaqc_lub" target="_blank" class="sx"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/afaqc.lub/" target="_blank" class="sig"><i
+          class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@afaq_club" target="_blank" class="stt"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@AFAQ_SA_CLUB" target="_blank" class="syt"><i
+          class="fa-brands fa-youtube"></i></a>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ MOBILE BOTTOM NAV ═══════════════════ -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-inner">
+      <button class="mbn active" onclick="nav('tasks')" id="mbn-tasks"><i
+          class="fa-solid fa-list-check"></i>المهام</button>
+      <button class="mbn" onclick="nav('services')" id="mbn-services"><i class="fa-solid fa-globe"></i>الخدمات</button>
+      <button class="mbn" onclick="nav('policies')" id="mbn-policies"><i
+          class="fa-solid fa-scale-balanced"></i>السياسات</button>
+      <button class="mbn" onclick="nav('org')" id="mbn-org"><i class="fa-solid fa-sitemap"></i>الهيكل</button>
+      <button class="mbn" onclick="nav('calendar')" id="mbn-calendar"><i
+          class="fa-solid fa-calendar-days"></i>التقويم</button>
+      <button class="mbn" onclick="nav('occasions')" id="mbn-occasions"><i
+          class="fa-solid fa-star"></i>المناسبات</button>
+      <button class="mbn" onclick="nav('committee')" id="mbn-committee"><i class="fa-solid fa-users"></i>هيكل
+        اللجنة</button>
+      <button class="mbn" onclick="nav('news')" id="mbn-news"><i class="fa-solid fa-newspaper"></i>الأخبار</button>
+    </div>
+  </nav>
+
+  <script>
+    // ═══════ USER DATABASE ═══════
+    const USERS_DB = {
+      'admin': { password: 'admin123', name: 'المسؤول', role: 'admin', avatar: '👨‍💼' },
+      'omar': { password: 'Afaq@O14tX9', name: 'عمر قاس هوساوي', role: 'member', avatar: '🎬' },
+      'saheeb': { password: 'Afaq@S53nR8', name: 'صهيب تركي ال احمد', role: 'member', avatar: '🎨' },
+      'abdulrahman': { password: 'Afaq@jdkf3r', name: 'عبدالرحمن حسام الحربي', role: 'member', avatar: '✍️' },
+      'gassan': { password: 'Afaq@G92kL4', name: 'غسان عصام عقيل', role: 'member', avatar: '👤' },
+      'hussain': { password: 'Afaq@H23mL9', name: 'حسين عبدالله المانع', role: 'admin', avatar: '👑' },
+      'dana': { password: 'Afaq@D78kP2', name: 'دُنا فيصل الغامدي', role: 'admin', avatar: '👩‍💼' },
+      'ghassan_s': { password: 'Afaq@N45xQ7', name: 'نضال جميل سندي', role: 'admin', avatar: '👤' },
+      'mohammed': { password: 'Afaq@M62rL8', name: 'ميار محمد الزهراني', role: 'admin', avatar: '👤' },
+      'turki': { password: 'Afaq@T46rH8', name: 'تركي عصام الغامدي', role: 'admin', avatar: '👤' },
+      'user': { password: 'password', name: 'مستخدم تجريبي', role: 'member', avatar: '👥' },
+    };
+
+    // ═══════ LOGIN MANAGEMENT ═══════
+    function getLoggedInUser() {
+      const session = localStorage.getItem('afaq_session');
+      if (session) {
+        try {
+          return JSON.parse(session);
+        } catch (e) {
+          localStorage.removeItem('afaq_session');
+          return null;
+        }
+      }
+      return null;
+    }
+
+    function setLoggedInUser(username, userData) {
+      const sessionData = { username, ...userData, loginTime: new Date().toISOString() };
+      localStorage.setItem('afaq_session', JSON.stringify(sessionData));
+    }
+
+    function logout() {
+      localStorage.removeItem('afaq_session');
+      location.reload();
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const username = document.getElementById('lf-user').value.trim();
+      const password = document.getElementById('lf-pass').value;
+      const errEl = document.getElementById('loginErr');
+
+      // تحقق من البيانات
+      // try direct key first
+      let key = username;
+      if (!(USERS_DB[key])) {
+        // attempt partial match ignoring prefix/suffix
+        const low = username.toLowerCase();
+        for (const k in USERS_DB) {
+          if (low.includes(k.toLowerCase())) { key = k; break; }
+        }
+      }
+      if (USERS_DB[key] && USERS_DB[key].password === password) {
+        setLoggedInUser(key, USERS_DB[key]);
+        document.getElementById('loginOverlay').classList.add('hiding');
+        setTimeout(() => {
+          document.getElementById('loginOverlay').style.display = 'none';
+          document.body.classList.remove('locked');
+          updateUserUI();
+        }, 300);
+      } else {
+        errEl.style.display = 'block';
+        errEl.style.animation = 'shake 0.4s';
+        document.getElementById('lf-pass').value = '';
+        setTimeout(() => { errEl.style.animation = ''; }, 400);
+      }
+    }
+
+    function updateUserUI() {
+      const user = getLoggedInUser();
+      if (user) {
+        const userPill = document.getElementById('userPill');
+        const adminBadge = document.getElementById('adminBadge');
+        const userPillName = document.getElementById('userPillName');
+        
+        userPillName.textContent = user.name;
+        userPill.style.display = 'flex';
+        userPill.title = 'اضغط لتسجيل الخروج';
+        userPill.addEventListener('click', logout);
+        
+        if (user.role === 'admin') {
+          adminBadge.style.display = 'flex';
+        }
+      }
+    }
+
+    // ═══════ CHECK LOGIN ON PAGE LOAD ═══════
+    window.addEventListener('DOMContentLoaded', () => {
+      const user = getLoggedInUser();
+      if (user) {
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.body.classList.remove('locked');
+        updateUserUI();
+      } else {
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.body.classList.add('locked');
+      }
+    });
+
+    /* ═══════ NAVIGATION ═══════ */
+    let currentPage = 'tasks';
+    let occasionsRendered = false;
+
+    function nav(page) {
+      if (page === currentPage) return;
+      currentPage = page;
+
+      // pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+
+      // top nav links
+      document.querySelectorAll('.topnav-links a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+
+      // sidebar links
+      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+
+      // mobile bottom nav
+      document.querySelectorAll('.mbn').forEach(b => b.classList.remove('active'));
+      const mbn = document.getElementById('mbn-' + page);
+      if (mbn) { mbn.classList.add('active'); mbn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }
+
+      // occasions lazy render
+      if (page === 'occasions' && !occasionsRendered) { renderOccasions(); occasionsRendered = true; }
+
+      // close mobile sidebar
+      closeSidebar();
+
+      // scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // attach topnav + sidebar links
+    document.querySelectorAll('[data-page]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); nav(el.dataset.page); });
+    });
+
+    /* ═══════ HAMBURGER / SIDEBAR ═══════ */
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    hamburger.addEventListener('click', () => {
+      const open = sidebar.classList.toggle('mobile-open');
+      overlay.classList.toggle('open', open);
+      hamburger.classList.toggle('open', open);
+    });
+
+    function closeSidebar() {
+      sidebar.classList.remove('mobile-open');
+      overlay.classList.remove('open');
+      hamburger.classList.remove('open');
+    }
+    overlay.addEventListener('click', closeSidebar);
+
+    /* ═══════ POLICY TABS ═══════ */
+    function showPolicy(id, btn) {
+      document.querySelectorAll('.policy-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    /* ═══════ OCCASIONS ═══════ */
+    const fixedOcc = [
+      { name: 'رأس السنة الميلادية', month: 1, day: 1, icon: '🎉' },
+      { name: 'اليوم الدولي للتعليم', month: 1, day: 24, icon: '📚' },
+      { name: 'يوم التأسيس السعودي', month: 2, day: 22, icon: '🇸🇦' },
+      { name: 'اليوم العالمي للمرأة', month: 3, day: 8, icon: '👩' },
+      { name: 'يوم العلم السعودي', month: 3, day: 11, icon: '📖' },
+      { name: 'يوم الأم', month: 3, day: 21, icon: '💐' },
+      { name: 'اليوم الوطني السعودي', month: 9, day: 23, icon: '🟢' },
+      { name: 'اليوم العالمي للصحة النفسية', month: 10, day: 10, icon: '🧠' },
+      { name: 'اليوم العالمي للعلوم', month: 11, day: 10, icon: '🔬' },
+      { name: 'ذكرى تأسيس آفاق', month: 11, day: 12, icon: '⭐' },
+      { name: 'اليوم العالمي لحقوق الإنسان', month: 12, day: 10, icon: '🕊️' },
+      { name: 'اليوم العالمي للغة العربية', month: 12, day: 18, icon: '🌙' },
+    ];
+    const varOcc = [
+      { name: 'دخول شهر رمضان', icon: '🌙', approxDate: '1 مارس 2026 تقريباً', month: 3, day: 1 },
+      { name: 'عيد الفطر المبارك', icon: '🌟', approxDate: '30 مارس 2026 تقريباً', month: 3, day: 30 },
+      { name: 'عيد الأضحى المبارك', icon: '🐑', approxDate: '6 يونيو 2026 تقريباً', month: 6, day: 6 },
+      { name: 'رأس السنة الهجرية', icon: '📅', approxDate: '17 يونيو 2026 تقريباً', month: 6, day: 17 },
+    ];
+
+    function timeLeft(m, d) {
+      const now = new Date();
+      let t = new Date(now.getFullYear(), m - 1, d);
+      if (t - now < -86400000) t = new Date(now.getFullYear() + 1, m - 1, d);
+      const diff = t - now;
+      const s = Math.max(0, Math.floor(diff / 1000));
+      return {
+        days: Math.floor(s / 86400), hours: Math.floor(s % 86400 / 3600),
+        mins: Math.floor(s % 3600 / 60), secs: s % 60,
+        isPast: diff < -86400000, isToday: diff >= 0 && Math.floor(s / 86400) === 0,
+        diff
+      };
+    }
+    const mn = m => ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'][m - 1];
+    const p2 = n => String(n).padStart(2, '0');
+
+    function cdHTML(key, t, showDays = true) {
+      let h = '<div class="countdown">';
+      if (showDays) h += `<div class="cd-unit"><span class="cd-num" data-k="${key}" data-u="d">${t.days}</span><span class="cd-label">يوم</span></div><div class="cd-sep">:</div>`;
+      h += `<div class="cd-unit"><span class="cd-num" data-k="${key}" data-u="h">${p2(t.hours)}</span><span class="cd-label">ساعة</span></div>`;
+      h += `<div class="cd-sep">:</div><div class="cd-unit"><span class="cd-num" data-k="${key}" data-u="m">${p2(t.mins)}</span><span class="cd-label">دقيقة</span></div>`;
+      h += `<div class="cd-sep">:</div><div class="cd-unit"><span class="cd-num" data-k="${key}" data-u="s">${p2(t.secs)}</span><span class="cd-label">ثانية</span></div></div>`;
+      return h;
+    }
+
+    function renderOccasions() {
+      const grid = document.getElementById('occGrid');
+      const all = [
+        ...fixedOcc.map(o => ({ ...o, ...timeLeft(o.month, o.day), type: 'fixed' })),
+        ...varOcc.map(o => ({ ...o, ...timeLeft(o.month, o.day), type: 'var' })),
+      ].sort((a, b) => a.isPast && !b.isPast ? 1 : !a.isPast && b.isPast ? -1 : a.diff - b.diff);
+
+      grid.innerHTML = all.map(o => {
+        const key = (o.type === 'var' ? 'v-' : '') + o.month + '-' + o.day;
+        let cls = 'occ-card';
+        if (o.isPast) cls += ' occ-past';
+        else if (o.isToday) cls += ' occ-today';
+        else if (o.type === 'var') cls += ' occ-variable';
+
+        let body = `<div class="occ-icon">${o.icon}</div>`;
+        if (o.type === 'fixed') body += `<div class="occ-date">${o.day} ${mn(o.month)}</div>`;
+        body += `<div class="occ-name">${o.name}</div>`;
+        if (o.type === 'var') body += `<div class="occ-approx"><i class="fa-solid fa-circle-info"></i>${o.approxDate}</div>`;
+        if (o.isPast) body += `<span class="past-badge">مرّت هذا العام</span>`;
+        else if (o.isToday) body += `<span class="today-badge">اليوم 🎊</span>` + cdHTML(key, o, false);
+        else body += cdHTML(key, o);
+
+        return `<div class="${cls}">${body}</div>`;
+      }).join('');
+
+      // live tick
+      setInterval(() => {
+        [...fixedOcc.map(o => ({ ...o, key: o.month + '-' + o.day })),
+        ...varOcc.map(o => ({ ...o, key: 'v-' + o.month + '-' + o.day }))].forEach(o => {
+          const t = timeLeft(o.month, o.day);
+          if (t.isPast) return;
+          const set = (u, v) => { const el = document.querySelector(`[data-k="${o.key}"][data-u="${u}"]`); if (el) el.textContent = v; };
+          if (!t.isToday) set('d', t.days);
+          set('h', p2(t.hours)); set('m', p2(t.mins)); set('s', p2(t.secs));
+        });
+      }, 1000);
+    }
+  </script>
+</body>
+
+</html>
