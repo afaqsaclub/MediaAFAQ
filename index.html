@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اللجنة الإعلامية | نادي آفاق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1f3b58; --secondary-color: #c9a86a; --bg-light: #f4f1eb; 
+            --text-dark: #1f3b58; --white: #ffffff; --gray: #6c757d;
+            --header-height: 80px; --footer-height: 120px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); overflow: hidden; display: flex; flex-direction: column; height: 100vh; }
+        nav { background-color: var(--primary-color); height: var(--header-height); padding: 0 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-bottom: 3px solid var(--secondary-color); z-index: 100; }
+        .logo-container { display: flex; align-items: center; gap: 15px; color: var(--white); text-decoration: none; }
+        .logo-img { width: 50px; height: 50px; background-color: var(--white); border-radius: 50%; padding: 5px; object-fit: contain; }
+        .logo-text h1 { font-size: 1.5rem; font-weight: 800; }
+        .nav-links { display: flex; gap: 15px; list-style: none; }
+        .nav-links button { background: none; border: none; color: var(--white); font-size: 1.1rem; cursor: pointer; transition: 0.3s; padding: 5px 10px; position: relative; }
+        .nav-links button.active { color: var(--secondary-color); font-weight: 700; }
+        .nav-links button.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background-color: var(--secondary-color); }
+        .slider-container { position: relative; flex: 1; width: 100%; overflow: hidden; }
+        .slider-wrapper { display: flex; height: 100%; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        .slide { min-width: 100%; height: 100%; padding: 40px 5% 80px; overflow-y: auto; }
+        .slide::-webkit-scrollbar { width: 6px; }
+        .slide::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 10px; }
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 2.2rem; color: var(--primary-color); position: relative; display: inline-block; }
+        .section-title h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 50%; height: 4px; background-color: var(--secondary-color); }
+        .arrow-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: var(--primary-color); color: var(--white); border: 2px solid var(--secondary-color); width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
+        .arrow-btn:hover { background-color: var(--secondary-color); color: var(--primary-color); }
+        .prev-btn { right: 20px; } .next-btn { left: 20px; }
+        .dots-container { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+        .dot { width: 12px; height: 12px; background-color: rgba(31, 59, 88, 0.3); border-radius: 50%; cursor: pointer; }
+        .dot.active { background-color: var(--primary-color); transform: scale(1.3); }
+        .cards-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; max-width: 1000px; margin: 0 auto; }
+        .card { background-color: var(--white); border-radius: 15px; padding: 40px 20px; width: 300px; text-align: center; text-decoration: none; color: var(--primary-color); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); transition: 0.4s; border-bottom: 5px solid transparent; display: flex; flex-direction: column; align-items: center; }
+        .card:hover { transform: translateY(-10px); border-bottom-color: var(--secondary-color); }
+        .card i { font-size: 3.5rem; margin-bottom: 20px; }
+        .policies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .policy-item { background: var(--white); padding: 20px; border-radius: 12px; border-right: 5px solid var(--primary-color); }
+        .org-chart { display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .org-box { background-color: var(--primary-color); color: var(--white); padding: 12px 25px; border-radius: 8px; font-weight: 700; border: 2px solid var(--secondary-color); min-width: 180px; text-align: center; }
+        .committees-wrapper { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; width: 100%; }
+        .committee-column { background: var(--white); padding: 15px; border-radius: 12px; flex: 1; min-width: 250px; max-width: 350px; border-top: 4px solid var(--primary-color); display: flex; flex-direction: column; gap: 10px; }
+        .committee-title { background-color: var(--secondary-color); color: var(--primary-color); padding: 8px; border-radius: 5px; font-weight: 800; text-align: center; }
+        .role-box { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 8px; text-align: center; border-radius: 5px; font-size: 0.95rem; }
+        .calendar-wrapper { background-color: var(--white); padding: 15px; border-radius: 15px; max-width: 1000px; margin: 0 auto; }
+        .calendar-wrapper iframe { width: 100%; height: 600px; border: none; }
+        footer { background-color: var(--primary-color); color: var(--white); text-align: center; padding: 15px; height: var(--footer-height); border-top: 5px solid var(--secondary-color); display: flex; flex-direction: column; justify-content: center; }
+        .social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; }
+        .social-icons a { display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); color: var(--white); border-radius: 50%; text-decoration: none; font-size: 1.2rem; transition: 0.3s; }
+        .social-icons a:hover { background-color: var(--secondary-color); color: var(--primary-color); transform: translateY(-3px); }
+        @media (max-width: 768px) {
+            nav { flex-direction: column; height: auto; padding: 10px; }
+            .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .arrow-btn { display: none; }
+            :root { --header-height: 140px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <img src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ Logo" class="logo-img">
+            <div class="logo-text"><h1>نادي آفاق</h1><p>اللجنة الإعلامية</p></div>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="goToSlide(0)">النماذج</button>
+            <button class="nav-btn" onclick="goToSlide(1)">السياسات</button>
+            <button class="nav-btn" onclick="goToSlide(2)">الهيكل</button>
+            <button class="nav-btn" onclick="goToSlide(3)">التقويم</button>
+        </div>
+    </nav>
+    <main class="slider-container">
+        <button class="arrow-btn prev-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="arrow-btn next-btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="slider-wrapper" id="sliderWrapper">
+            <div class="slide">
+                <div class="section-title"><h2>الخدمات الإلكترونية</h2></div>
+                <div class="cards-container">
+                    <a href="https://forms.gle/upxsRJjbBiJSdGjHA" target="_blank" class="card"><i class="fa-solid fa-pen-nib"></i><h3>تسليم المحتوى</h3></a>
+                    <a href="https://forms.gle/esh6sG3XDi2jFjMdA" target="_blank" class="card"><i class="fa-solid fa-certificate"></i><h3>تسليم الشهادات</h3></a>
+                    <a href="https://forms.gle/Mv1UKJEejq4svLdk6" target="_blank" class="card"><i class="fa-solid fa-comments"></i><h3>الشكاوى والاقتراحات</h3></a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="section-title"><h2>السياسات العامة</h2></div>
+                <div class="policies-grid">
+                    <div class="policy-item"><h4>الالتزام والسلوك</h4><p>التعامل باحترام ويُمنع أي إساءة أو تنمر.</p></div>
+                    <div class="policy-item"><h4>العضوية والانتماء</h4><p>العضوية تطوعية ومرتبطة بقيم النادي.</p></div>
+                    <div class="policy-item"><h4>الخصوصية</h4><p>تُحترم خصوصية الأعضاء ويُمنع تداول معلوماتهم.</p></div>
+                    <div class="policy-item"><h4>الأنشطة</h4><p>تخضع الفعاليات للموافقة ولا يُسمح بالعمل دون اعتماد.</p></div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="section-title"><h2>الهيكل التنظيمي</h2></div>
+                <div class="org-chart">
+                    <div class="org-box">رئيس النادي</div>
+                    <div class="org-level"><div class="org-box">نائب الرئيس</div><div class="org-box">نائب التقنية</div><div class="org-box">نائب الأعضاء</div></div>
+                    <div class="committees-wrapper">
+                        <div class="committee-column"><div class="committee-title">الإعلامية</div><div class="role-box">رئيس اللجنة</div><div class="role-box">التصميم والمونتاج</div><div class="role-box">المحتوى</div></div>
+                        <div class="committee-column"><div class="committee-title">التشغيل</div><div class="role-box">رئيس اللجنة</div><div class="role-box">قائد فريق اقرأ</div><div class="role-box">قائد فريق الفنون</div><div class="role-box">قائد الرياضات</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="section-title"><h2>تقويم اللجنة الإعلامية</h2></div>
+                <div class="calendar-wrapper"><iframe src="https://calendar.google.com/calendar/embed?src=afaq.sa.club%40gmail.com&ctz=Asia%2FRiyadh"></iframe></div>
+            </div>
+        </div>
+        <div class="dots-container" id="dotsContainer">
+            <div class="dot active" onclick="goToSlide(0)"></div><div class="dot" onclick="goToSlide(1)"></div><div class="dot" onclick="goToSlide(2)"></div><div class="dot" onclick="goToSlide(3)"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="social-icons">
+            <a href="https://x.com/Afaqc_lub" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/afaqc.lub/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@afaq_club" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@AFAQ_SA_CLUB" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <p>جميع الحقوق محفوظة © نادي آفاق | AFAQ CLUB</p>
+    </footer>
+    <script>
+        let currentSlide = 0; const totalSlides = 4;
+        const wrapper = document.getElementById('sliderWrapper');
+        const dots = document.querySelectorAll('.dot');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        function updateSliderUI() {
+            wrapper.style.transform = `translateX(${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => { dot.classList.toggle('active', i === currentSlide); if(navBtns[i]) navBtns[i].classList.toggle('active', i === currentSlide); });
+        }
+        function goToSlide(i) { currentSlide = i; updateSliderUI(); }
+        function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; updateSliderUI(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSliderUI(); } }
+        let startX = 0;
+        wrapper.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        wrapper.addEventListener('touchend', e => { let endX = e.changedTouches[0].clientX; if (startX - endX > 50) nextSlide(); else if (endX - startX > 50) prevSlide(); });
+    </script>
+</body>
+</html>
