@@ -886,114 +886,101 @@
       }
     });
 
-    // ═══════ TASKS MANAGEMENT ═══════
-    function getPriorityClass(p) {
-      if(p.includes('عال')) return 'prio-high';
-      if(p.includes('متوسط')) return 'prio-med';
-      return 'prio-low';
-    }
+<!-- ══ PAGE: TASKS (الجزء المحدث بالكامل) ══ -->
+      <section class="page active" id="page-tasks">
+        <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>مهام اللجنة</span></div>
+        <div class="page-header">
+          <h2><i class="fa-solid fa-list-check"></i> مهام لجنة الشؤون الإعلامية</h2>
+          <p>متابعة المهام المسندة والمواعيد النهائية لتنفيذها</p>
+          <div class="divider"></div>
+        </div>
 
-    function getBorderClass(p) {
-      if(p.includes('عال')) return 'tc-high';
-      if(p.includes('متوسط')) return 'tc-med';
-      return 'tc-low';
-    }
+        <!-- زر إضافة المهمة بتصميم احترافي -->
+        <div id="btnShowAddModal" style="display: none; margin-bottom: 30px;">
+          <button class="add-task-btn" onclick="openTaskModal()" style="background: var(--primary); color: white; border: none; padding: 15px 25px; border-radius: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(31, 59, 88, 0.2); transition: 0.3s;">
+            <i class="fa-solid fa-plus-circle" style="color: var(--secondary); font-size: 1.2rem;"></i>
+            <span>تكليف بمهمة جديدة</span>
+          </button>
+        </div>
 
-    function formatDate(dateStr) {
-      if(!dateStr) return 'غير محدد';
-      try {
-        const d = new Date(dateStr);
-        if(isNaN(d)) return dateStr;
-        return d.toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' });
-      } catch { return dateStr; }
-    }
+        <!-- حاوية البطاقات -->
+        <div class="tasks-grid" id="tasksBody">
+          <div class="loader-card" style="text-align: center; padding: 50px; background: white; border-radius: 15px; box-shadow: var(--shadow);">
+            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--secondary);"></i>
+            <p style="margin-top: 15px; font-weight: 700; color: var(--gray);">جاري مزامنة المهام من قاعدة البيانات...</p>
+          </div>
+        </div>
+      </section>
 
-    async function loadTasks() {
-      const grid = document.getElementById('tasksBody');
-      const isAdmin = getLoggedInUser()?.role === 'admin';
-      
-      try {
-        const res = await fetch(APP_SCRIPT_URL);
-        const json = await res.json();
-        
-        if (json.data && json.data.length > 0) {
-          let html = '';
-          json.data.forEach(t => {
-            html += `
-              <div class="task-card ${getBorderClass(t.priority)}">
-                <div class="task-head">
-                  <div class="task-title">${t.task}</div>
-                  <div class="task-priority ${getPriorityClass(t.priority)}">${t.priority}</div>
+      <!-- ═══════════════════ واجهة تكليف المهمة (MODAL) ═══════════════════ -->
+      <div class="modal-overlay" id="taskModal" style="display: none; position: fixed; inset: 0; background: rgba(31, 59, 88, 0.7); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="modal-content" style="background: white; width: 90%; max-width: 500px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.3); animation: fadeUp 0.3s ease;">
+          
+          <!-- الرأس -->
+          <div style="background: var(--primary); color: white; padding: 25px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="width: 40px; height: 40px; background: rgba(201, 168, 106, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--secondary); border: 1px solid var(--secondary);">
+                <i class="fa-solid fa-clipboard-list"></i>
+              </div>
+              <div>
+                <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800;">تكليف بمهمة جديدة</h3>
+                <p style="margin: 0; font-size: 0.75rem; color: rgba(255,255,255,0.7);">أدخل بيانات التكليف للعضو المسؤول</p>
+              </div>
+            </div>
+            <button onclick="closeTaskModal()" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.7;"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <form id="addTaskForm" onsubmit="submitTask(event)" style="padding: 25px;">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+              
+              <!-- اسم المهمة -->
+              <div class="lf-group">
+                <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-file-signature" style="color: var(--secondary); margin-left: 5px;"></i> عنوان المهمة</label>
+                <input type="text" id="t-name" required placeholder="مثال: كتابة محتوى لقاء الأسبوع" style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+              </div>
+
+              <!-- المسؤول والأولوية في سطر واحد -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-user-tag" style="color: var(--secondary); margin-left: 5px;"></i> المسؤول</label>
+                  <input type="text" id="t-assigned" required placeholder="اسم العضو" style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
                 </div>
-                <div class="task-dates">
-                  <div class="task-date"><i class="fa-regular fa-calendar-plus"></i> البدء: <strong>${formatDate(t.startDate)}</strong></div>
-                  <div class="task-date"><i class="fa-regular fa-calendar-check"></i> التسليم: <strong>${formatDate(t.dueDate)}</strong></div>
-                </div>
-                <div class="task-footer">
-                  <div class="task-user"><i class="fa-solid fa-circle-user"></i> ${t.assignedTo}</div>
-                  ${isAdmin ? `<button class="btn-delete-card" onclick="deleteTask(${t.rowIndex})" title="حذف المهمة"><i class="fa-solid fa-trash-can"></i></button>` : ''}
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-bolt" style="color: var(--secondary); margin-left: 5px;"></i> الأولوية</label>
+                  <select id="t-priority" required style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+                    <option value="عالية">🔴 عالية</option>
+                    <option value="متوسطة" selected>🟡 متوسطة</option>
+                    <option value="منخفضة">🟢 منخفضة</option>
+                  </select>
                 </div>
               </div>
-            `;
-          });
-          grid.innerHTML = html;
-        } else {
-          grid.innerHTML = `<div class="loader-card"><i class="fa-regular fa-face-smile" style="font-size: 2rem; display:block; margin-bottom:10px;"></i> لا توجد مهام حالياً! عمل رائع.</div>`;
-        }
-      } catch (err) {
-        grid.innerHTML = `<div class="loader-card" style="color: #ef4444;"><i class="fa-solid fa-triangle-exclamation" style="font-size: 2rem; display:block; margin-bottom:10px;"></i> حدث خطأ أثناء جلب المهام.</div>`;
-      }
-    }
 
-    function openTaskModal() { document.getElementById('taskModal').style.display = 'flex'; }
-    function closeTaskModal() { document.getElementById('taskModal').style.display = 'none'; document.getElementById('addTaskForm').reset(); }
+              <!-- التواريخ في سطر واحد -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-calendar-day" style="color: var(--secondary); margin-left: 5px;"></i> تاريخ البدء</label>
+                  <input type="date" id="t-start" required style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+                </div>
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-calendar-check" style="color: var(--secondary); margin-left: 5px;"></i> التسليم</label>
+                  <input type="date" id="t-due" required style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+                </div>
+              </div>
 
-    async function submitTask(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري النشر...';
-      btn.disabled = true;
+            </div>
 
-      const data = {
-        task: document.getElementById('t-name').value,
-        priority: document.getElementById('t-priority').value,
-        startDate: document.getElementById('t-start').value,
-        dueDate: document.getElementById('t-due').value,
-        assignedTo: document.getElementById('t-assigned').value
-      };
-
-      try {
-        await fetch(APP_SCRIPT_URL, {
-          method: 'POST',
-          body: JSON.stringify({ action: 'add', data: data })
-        });
-        closeTaskModal();
-        document.getElementById('tasksBody').innerHTML = '<div class="loader-card"><i class="fa-solid fa-circle-notch fa-spin"></i> تحديث القائمة...</div>';
-        loadTasks();
-      } catch (err) {
-        alert('حدث خطأ أثناء إضافة المهمة.');
-      }
-      btn.innerHTML = '<i class="fa-solid fa-save"></i> حفظ المهمة';
-      btn.disabled = false;
-    }
-
-    async function deleteTask(rowIndex) {
-      if(!confirm('هل أنت متأكد من حذف هذه المهمة نهائياً؟')) return;
-      const grid = document.getElementById('tasksBody');
-      grid.innerHTML = '<div class="loader-card"><i class="fa-solid fa-circle-notch fa-spin"></i> جاري الحذف...</div>';
-
-      try {
-        await fetch(APP_SCRIPT_URL, {
-          method: 'POST',
-          body: JSON.stringify({ action: 'delete', rowIndex: rowIndex })
-        });
-        loadTasks();
-      } catch (err) {
-        alert('حدث خطأ أثناء الحذف.');
-        loadTasks();
-      }
-    }
-
+            <!-- أزرار التحكم -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+              <button type="button" onclick="closeTaskModal()" style="flex: 1; padding: 13px; border: none; border-radius: 12px; background: var(--bg); color: var(--gray); font-weight: 700; cursor: pointer; font-family: 'Tajawal';">إلغاء</button>
+              <button type="submit" id="submitBtn" style="flex: 2; padding: 13px; border: none; border-radius: 12px; background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); color: var(--primary); font-weight: 900; cursor: pointer; font-family: 'Tajawal'; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <span>تأكيد الإرسال</span>
+                <i class="fa-solid fa-paper-plane" style="font-size: 0.9rem;"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    
     /* ═══════ NAVIGATION ═══════ */
     let currentPage = 'tasks';
     let occasionsRendered = false;
