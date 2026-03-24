@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>لجنة الشؤون الإعلامية | نادي آفاق</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -26,18 +25,10 @@
       --shadow-lg: 0 14px 40px rgba(31, 59, 88, 0.15);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Tajawal', sans-serif;
-    }
-
-    /* ─────── SCROLLBAR ─────── */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
-
-    /* ─────── LAYOUT ─────── */
+    
     body { background: var(--bg); color: var(--primary); display: flex; flex-direction: column; min-height: 100vh; }
 
     /* ─────── TOP NAV ─────── */
@@ -46,25 +37,21 @@
     .topnav-logo img { width: 44px; height: 44px; border-radius: 50%; background: var(--white); padding: 3px; box-shadow: 0 0 12px rgba(201, 168, 106, 0.4); object-fit: contain; }
     .topnav-logo .brand h1 { font-size: 1.25rem; font-weight: 900; letter-spacing: -0.3px; }
     .topnav-logo .brand p { font-size: 0.72rem; color: var(--secondary); font-weight: 500; }
-
-    /* hamburger */
+    
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: .3s; }
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-    /* top nav links */
+    
     .topnav-links { display: flex; gap: 4px; align-items: center; }
     .topnav-links a { color: rgba(255, 255, 255, 0.75); text-decoration: none; padding: 7px 12px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; transition: .2s; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
     .topnav-links a:hover { background: rgba(255, 255, 255, 0.1); color: var(--white); }
     .topnav-links a.active { background: rgba(201, 168, 106, 0.18); color: var(--secondary); }
     .topnav-links a i { font-size: 0.9rem; }
 
-    /* ─────── WRAPPER ─────── */
+    /* ─────── SIDEBAR & LAYOUT ─────── */
     .wrapper { display: flex; flex: 1; }
-
-    /* ─────── SIDEBAR ─────── */
     .sidebar { width: var(--sidebar-w); background: var(--white); border-left: 1px solid var(--border); display: flex; flex-direction: column; position: sticky; top: var(--nav-h); height: calc(100vh - var(--nav-h)); overflow-y: auto; flex-shrink: 0; }
     .sidebar-header { padding: 20px 18px 14px; border-bottom: 1px solid var(--border); }
     .sidebar-header p { font-size: 0.7rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .8px; }
@@ -78,7 +65,7 @@
     .sidebar-nav a.active::before { content: ''; width: 3px; height: 60%; background: var(--secondary); border-radius: 2px; position: absolute; right: 0; }
     .sidebar-divider { height: 1px; background: var(--border); margin: 8px 12px; }
 
-    /* ─────── MAIN CONTENT & PAGE ─────── */
+    /* ─────── MAIN CONTENT & PAGES ─────── */
     .main-content { flex: 1; min-width: 0; }
     .page { display: none; min-height: calc(100vh - var(--nav-h)); padding: 36px 40px 60px; }
     .page.active { display: block; }
@@ -88,57 +75,30 @@
     .page-header p { margin-top: 6px; color: var(--gray); font-size: 0.9rem; }
     .page-header .divider { width: 60px; height: 3px; background: var(--secondary); border-radius: 2px; margin-top: 10px; }
 
-    /* ─────── TASK CARDS SYSTEM (الجديد) ─────── */
-    .add-task-btn { background: var(--secondary); color: var(--primary); border: none; padding: 12px 24px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.95rem; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: 0 4px 12px rgba(201, 168, 106, 0.3); }
-    .add-task-btn:hover { background: var(--secondary-light); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(201, 168, 106, 0.4); }
-    
+    /* ─────── TASK CARDS ─────── */
     .tasks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
     .task-card { background: var(--white); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); border-top: 5px solid var(--secondary); display: flex; flex-direction: column; gap: 16px; transition: .3s; position: relative; }
     .task-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-    
     .tc-high { border-top-color: #ef4444; }
     .tc-med { border-top-color: #f59e0b; }
     .tc-low { border-top-color: #10b981; }
-
     .task-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
     .task-title { font-size: 1.1rem; font-weight: 800; color: var(--primary); line-height: 1.5; }
-    
     .task-priority { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
     .prio-high { background: #fee2e2; color: #b91c1c; }
     .prio-med { background: #fef3c7; color: #b45309; }
     .prio-low { background: #d1fae5; color: #047857; }
-
     .task-dates { display: flex; flex-direction: column; gap: 8px; background: var(--bg); padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); }
     .task-date { font-size: 0.82rem; color: var(--gray); display: flex; align-items: center; gap: 8px; }
     .task-date i { color: var(--secondary); width: 16px; text-align: center; }
     .task-date strong { color: var(--primary); font-weight: 700; }
-
     .task-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--border); margin-top: auto; }
     .task-user { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 800; color: var(--primary); }
     .task-user i { color: var(--secondary); font-size: 1.4rem; }
-    
     .btn-delete-card { background: #fee2e2; color: #ef4444; border: none; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; transition: .2s; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
     .btn-delete-card:hover { background: #ef4444; color: #fff; transform: scale(1.05); }
 
-    .loader-card { grid-column: 1 / -1; text-align: center; padding: 60px; color: var(--gray); font-weight: 700; font-size: 1.1rem; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .loader-card i { color: var(--secondary); margin-left: 8px; font-size: 1.5rem; }
-
-    /* ─────── MODAL (ADD TASK) ─────── */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(31, 59, 88, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
-    .modal-content { background: var(--white); width: 90%; max-width: 450px; border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-lg); animation: fadeUp 0.3s ease; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 2px solid var(--bg); padding-bottom: 14px; }
-    .modal-header h3 { font-size: 1.3rem; color: var(--primary); font-weight: 900; }
-    .close-modal { background: var(--bg); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; color: var(--gray); cursor: pointer; transition: .2s; }
-    .close-modal:hover { background: #fee2e2; color: #ef4444; }
-    .modal-form .lf-group { margin-bottom: 18px; }
-    .modal-form label { display: block; margin-bottom: 8px; font-size: 0.85rem; font-weight: 800; color: var(--primary); }
-    .modal-form input, .modal-form select { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; font-family: 'Tajawal'; outline: none; transition: .2s; font-size: 0.95rem; }
-    .modal-form input:focus, .modal-form select:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(201, 168, 106, 0.2); }
-    .btn-submit { background: var(--primary); color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 10px; font-family: 'Tajawal'; font-size: 1.05rem; transition: .2s; }
-    .btn-submit:hover { background: var(--primary-light); }
-
-    /* ─────── CARDS GRID (Services) ─────── */
+    /* ─────── SERVICES CARDS ─────── */
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
     .svc-card { background: var(--white); border-radius: var(--radius); padding: 28px 20px; text-decoration: none; color: var(--primary); box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; text-align: center; border-bottom: 4px solid transparent; transition: .3s; }
     .svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-bottom-color: var(--secondary); }
@@ -154,6 +114,7 @@
     .ptab.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
     .policy-panel { display: none; animation: fadeUp .3s ease; }
     .policy-panel.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .policy-card { background: var(--white); border-radius: var(--radius); padding: 28px 32px; box-shadow: var(--shadow); border-right: 5px solid var(--secondary); max-width: 900px; }
     .policy-card h3 { font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
     .policy-intro { color: var(--gray); font-size: 0.92rem; line-height: 1.7; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 16px; }
@@ -165,14 +126,18 @@
     .vio-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin-bottom: 14px; }
     .vio-table th { background: var(--primary); color: var(--white); padding: 9px 12px; text-align: center; }
     .vio-table td { padding: 8px 12px; text-align: center; border-bottom: 1px solid var(--border); }
+    .vio-table tr:hover td { background: rgba(201, 168, 106, .07); }
     .badge { padding: 3px 10px; border-radius: 12px; font-size: .73rem; font-weight: 700; display: inline-block; }
     .badge-warn { background: #fff3cd; color: #856404; }
     .badge-alert { background: #f8d7da; color: #842029; }
     .badge-ban { background: #d1e7dd; color: #0f5132; }
 
-    /* ─────── CALENDAR ─────── */
+    /* ─────── CALENDAR & CANVA ─────── */
     .cal-wrap { background: var(--white); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
     .cal-wrap iframe { width: 100%; border: none; border-radius: 10px; }
+    .canva-wrap { max-width: 960px; }
+    .canva-ratio { position: relative; width: 100%; height: 0; padding-top: 56.2225%; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14); }
+    .canva-ratio iframe { position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; }
 
     /* ─────── OCCASIONS ─────── */
     .occ-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
@@ -185,23 +150,25 @@
     .occ-date { font-size: .74rem; color: var(--gray); }
     .occ-name { font-size: .93rem; font-weight: 700; }
     .occ-approx { font-size: .72rem; color: var(--gray); display: flex; align-items: center; gap: 4px; }
+    .occ-approx i { color: var(--secondary); font-size: .65rem; }
     .countdown { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
     .cd-unit { text-align: center; background: var(--bg); border-radius: 8px; padding: 5px 8px; min-width: 42px; }
-    .cd-sep { background: transparent; font-size: 1.1rem; font-weight: 900; color: var(--secondary); }
+    .cd-sep { background: transparent; font-size: 1.1rem; font-weight: 900; color: var(--secondary); min-width: auto; padding: 0 1px; }
     .cd-num { font-size: 1.2rem; font-weight: 900; color: var(--primary); line-height: 1; display: block; font-variant-numeric: tabular-nums; }
     .cd-label { font-size: .57rem; color: var(--gray); display: block; margin-top: 1px; }
     .past-badge { display: inline-block; background: var(--gray); color: #fff; font-size: .63rem; padding: 2px 8px; border-radius: 10px; font-weight: 700; }
     .today-badge { display: inline-block; background: #22c55e; color: #fff; font-size: .67rem; padding: 2px 10px; border-radius: 10px; font-weight: 800; }
 
-    /* ─────── COMMITTEE STRUCTURE ─────── */
+    /* ─────── COMMITTEE ─────── */
     .cs-banner { background: var(--primary); color: var(--white); border-radius: 12px; padding: 14px 22px; margin-bottom: 24px; display: flex; align-items: center; gap: 14px; border-right: 5px solid var(--secondary); }
+    .cs-banner i { color: var(--secondary); font-size: 1.4rem; }
     .cs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px; }
     .cs-card { background: var(--white); border-radius: var(--radius); padding: 22px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; border-top: 4px solid var(--border); transition: .3s; }
     .cs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
     .cs-head { border-top-color: var(--secondary); background: linear-gradient(135deg, #fff 80%, rgba(201, 168, 106, .07)); }
     .cs-avatar { width: 56px; height: 56px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 900; font-size: 1.1rem; border: 3px solid var(--secondary); }
     .cs-head .cs-avatar { background: var(--secondary); color: var(--primary); width: 64px; height: 64px; }
-    .cs-role { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 800; background: var(--primary); color: #fff; }
+    .cs-role { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: .78rem; font-weight: 800; background: var(--primary); color: #fff; align-self: flex-start; }
     .cs-name { font-size: 1.05rem; font-weight: 800; }
     .cs-tasks-title { font-size: .82rem; font-weight: 700; color: var(--secondary); display: flex; align-items: center; gap: 6px; margin-top: 4px; }
     .cs-tasks { list-style: none; display: flex; flex-direction: column; gap: 5px; }
@@ -210,39 +177,52 @@
     .cs-meta { font-size: .74rem; color: var(--gray); margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
     .cs-note { background: rgba(201, 168, 106, .1); border: 1px solid rgba(201, 168, 106, .3); border-radius: 10px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 10px; font-size: .86rem; line-height: 1.6; }
 
-    /* ─────── CANVA EMBED ─────── */
-    .canva-wrap { max-width: 960px; }
-    .canva-ratio { position: relative; width: 100%; height: 0; padding-top: 56.2225%; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14); }
-    .canva-ratio iframe { position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; }
-
     /* ─────── FOOTER ─────── */
     footer { background: var(--primary); color: var(--white); padding: 20px 28px; border-top: 3px solid var(--secondary); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
     .footer-brand { display: flex; align-items: center; gap: 10px; }
-    .footer-brand img { width: 36px; height: 36px; border-radius: 50%; background: #fff; padding: 2px; object-fit: contain; }
-    .footer-copy { font-size: .75rem; color: rgba(255, 255, 255, .45); }
+    .footer-brand img { width: 36px; height: 36px; border-radius: 50%; background: #fff; padding: 2px; }
     .footer-social { display: flex; gap: 8px; }
-    .footer-social a { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--white); background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .1); font-size: 1rem; transition: .3s; }
+    .footer-social a { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--white); background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .1); font-size: 1rem; transition: .3s; }
     .footer-social a:hover { transform: translateY(-3px); border-color: transparent; box-shadow: 0 4px 14px rgba(0, 0, 0, .3); }
 
-    /* ─────── MOBILE BOTTOM NAV ─────── */
+    /* ─────── MOBILE NAV & OVERLAYS ─────── */
     .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--primary); border-top: 2px solid var(--secondary); z-index: 950; height: 58px; box-shadow: 0 -4px 20px rgba(0, 0, 0, .2); }
-    .mobile-nav-inner { display: flex; width: 100%; height: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-    .mobile-nav-inner::-webkit-scrollbar { display: none; }
-    .mbn { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 66px; padding: 5px 4px; background: none; border: none; border-top: 2px solid transparent; color: rgba(255, 255, 255, .5); font-family: 'Tajawal', sans-serif; font-size: .6rem; font-weight: 700; cursor: pointer; gap: 3px; flex-shrink: 0; transition: .2s; }
+    .mobile-nav-inner { display: flex; width: 100%; height: 100%; overflow-x: auto; scrollbar-width: none; }
+    .mbn { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 66px; padding: 5px 4px; background: none; border: none; border-top: 2px solid transparent; color: rgba(255, 255, 255, .5); font-family: 'Tajawal'; font-size: .6rem; font-weight: 700; cursor: pointer; gap: 3px; flex-shrink: 0; transition: .2s; }
     .mbn.active { color: var(--secondary); border-top-color: var(--secondary); background: rgba(201, 168, 106, .08); }
-
-    /* ─────── MOBILE OVERLAY SIDEBAR ─────── */
     .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, .45); z-index: 800; }
-
-    /* ─────── BREADCRUMB & INFO BOX ─────── */
     .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--gray); margin-bottom: 20px; flex-wrap: wrap; }
     .breadcrumb span { color: var(--secondary); font-weight: 700; }
     .breadcrumb i { font-size: .65rem; color: var(--border); }
     .info-box { background: rgba(201, 168, 106, .1); border: 1px solid rgba(201, 168, 106, .3); border-radius: 10px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 10px; font-size: .87rem; line-height: 1.7; margin-bottom: 20px; }
 
+    /* ─────── LOGIN SYSTEM ─────── */
+    #loginOverlay { position: fixed; inset: 0; z-index: 9999; background: linear-gradient(135deg, #0d2137 0%, #1f3b58 60%, #0d2137 100%); display: flex; align-items: center; justify-content: center; padding: 20px; transition: opacity .5s ease, visibility .5s ease; opacity: 1; visibility: visible; }
+    #loginOverlay.hiding { opacity: 0; visibility: hidden; }
+    .login-card { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(201, 168, 106, 0.3); border-radius: 20px; padding: 44px 40px; width: 100%; max-width: 430px; backdrop-filter: blur(16px); box-shadow: 0 24px 64px rgba(0, 0, 0, .5); display: flex; flex-direction: column; align-items: center; gap: 20px; animation: loginIn .45s cubic-bezier(.22, 1, .36, 1); }
+    @keyframes loginIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    .login-logo { width: 72px; height: 72px; border-radius: 50%; background: #fff; padding: 5px; box-shadow: 0 0 24px rgba(201, 168, 106, .45); animation: logoFloat 3s ease-in-out infinite; }
+    @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .login-title { text-align: center; color: #fff; }
+    .login-title h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 4px; }
+    .login-title p { font-size: .82rem; color: rgba(201, 168, 106, .85); font-weight: 500; }
+    .login-form { width: 100%; display: flex; flex-direction: column; gap: 14px; }
+    .lf-group { display: flex; flex-direction: column; gap: 6px; }
+    .lf-group label { font-size: .8rem; font-weight: 700; color: rgba(255, 255, 255, .65); }
+    .lf-group input { background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .15); border-radius: 10px; padding: 13px 14px; color: #fff; font-size: .92rem; font-family: 'Tajawal'; outline: none; }
+    .lf-group input:focus { border-color: var(--secondary); background: rgba(255, 255, 255, .12); }
+    .login-err { background: rgba(240, 80, 80, .15); border: 1px solid rgba(240, 80, 80, .4); border-radius: 10px; padding: 10px; color: #fca5a5; font-size: .83rem; text-align: center; display: none; }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+    .login-btn { background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); color: var(--primary); border: none; border-radius: 12px; padding: 15px; font-size: 1rem; font-weight: 900; font-family: 'Tajawal'; cursor: pointer; transition: .25s; width: 100%; }
+    .login-btn:hover { transform: translateY(-2px); }
+    .admin-badge { display: none; align-items: center; gap: 5px; background: rgba(201, 168, 106, .18); border: 1px solid rgba(201, 168, 106, .35); padding: 4px 12px; border-radius: 20px; color: var(--secondary); font-size: .78rem; font-weight: 800; }
+    .user-pill { display: none; align-items: center; gap: 6px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .12); padding: 5px 13px; border-radius: 20px; color: rgba(255, 255, 255, .75); font-size: .8rem; font-weight: 700; cursor: pointer; transition: .3s; position: relative; }
+    .user-pill:hover { background: rgba(255, 255, 255, .15); transform: translateY(-2px); }
+    body.locked { overflow: hidden; }
+
     /* ─────── RESPONSIVE ─────── */
     @media(max-width:1024px) {
-      :root { var(--sidebar-w): 200px; }
+      :root { --sidebar-w: 200px; }
       .page { padding: 28px 24px 60px; }
     }
     @media(max-width:768px) {
@@ -258,32 +238,17 @@
       .cards-grid, .tasks-grid { grid-template-columns: 1fr; }
       .policy-tabs-row { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 4px; scrollbar-width: none; }
       .policy-tabs-row::-webkit-scrollbar { display: none; }
-      .cs-grid, .occ-grid { grid-template-columns: 1fr; }
+      .ptab { white-space: nowrap; }
+      .policy-card { padding: 18px; }
+      .org-col { max-width: 100%; }
+      .occ-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .occ-card { padding: 12px 10px; }
+      .cs-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; text-align: center; padding-bottom: 80px; }
     }
-
-    /* ─── LOGIN OVERLAY ─── */
-    #loginOverlay { position: fixed; inset: 0; z-index: 9999; background: linear-gradient(135deg, #0d2137 0%, #1f3b58 60%, #0d2137 100%); display: flex; align-items: center; justify-content: center; padding: 20px; transition: opacity .5s ease, visibility .5s ease; opacity: 1; visibility: visible; }
-    #loginOverlay.hiding { opacity: 0; visibility: hidden; }
-    .login-card { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(201, 168, 106, 0.3); border-radius: 20px; padding: 44px 40px; width: 100%; max-width: 430px; backdrop-filter: blur(16px); box-shadow: 0 24px 64px rgba(0, 0, 0, .5); display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .login-logo { width: 72px; height: 72px; border-radius: 50%; object-fit: contain; background: #fff; padding: 5px; box-shadow: 0 0 24px rgba(201, 168, 106, .45); animation: logoFloat 3s ease-in-out infinite; }
-    @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    .login-title { text-align: center; color: #fff; }
-    .login-title h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 4px; }
-    .login-title p { font-size: .82rem; color: rgba(201, 168, 106, .85); font-weight: 500; }
-    .login-form { width: 100%; display: flex; flex-direction: column; gap: 14px; }
-    .lf-group { display: flex; flex-direction: column; gap: 6px; }
-    .lf-group label { font-size: .8rem; font-weight: 700; color: rgba(255, 255, 255, .65); }
-    .lf-group input { background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .15); border-radius: 10px; padding: 13px 14px; color: #fff; font-size: .92rem; outline: none; }
-    .lf-group input:focus { border-color: var(--secondary); background: rgba(255, 255, 255, .12); }
-    .login-err { background: rgba(240, 80, 80, .15); border: 1px solid rgba(240, 80, 80, .4); border-radius: 10px; padding: 10px 14px; color: #fca5a5; font-size: .83rem; text-align: center; display: none; }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-    .login-btn { background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); color: var(--primary); border: none; border-radius: 12px; padding: 15px; font-size: 1rem; font-weight: 900; cursor: pointer; transition: .25s; width: 100%; }
-    .login-btn:hover { transform: translateY(-2px); }
-    .admin-badge { display: none; align-items: center; gap: 5px; background: rgba(201, 168, 106, .18); border: 1px solid rgba(201, 168, 106, .35); padding: 4px 12px; border-radius: 20px; color: var(--secondary); font-size: .78rem; font-weight: 800; }
-    .user-pill { display: none; align-items: center; gap: 6px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .12); padding: 5px 13px; border-radius: 20px; color: rgba(255, 255, 255, .75); font-size: .8rem; font-weight: 700; cursor: pointer; transition: .3s; }
-    .user-pill:hover { background: rgba(255, 255, 255, .15); transform: translateY(-2px); }
-    body.locked { overflow: hidden; }
+    @media(max-width:480px) {
+      .occ-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
@@ -311,7 +276,7 @@
   <!-- ═══════════════════ TOP NAV ═══════════════════ -->
   <nav class="topnav">
     <div class="topnav-logo">
-      <img src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ">
+      <img src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3214/3214736.png'">
       <div class="brand">
         <h1>نادي آفاق</h1>
         <p>لجنة الشؤون الإعلامية</p>
@@ -362,7 +327,7 @@
     <!-- ─── MAIN ─── -->
     <main class="main-content">
 
-      <!-- ══ PAGE: TASKS (تم تحديثه لبطاقات المهام المرتبطة بجوجل شيت) ══ -->
+      <!-- ══ PAGE: TASKS (تم تحديثها بالكامل للبطاقات وربط الشيت) ══ -->
       <section class="page active" id="page-tasks">
         <div class="breadcrumb"><i class="fa-solid fa-house"></i><i class="fa-solid fa-chevron-left"></i><span>مهام اللجنة</span></div>
         <div class="page-header">
@@ -371,19 +336,91 @@
           <div class="divider"></div>
         </div>
 
-        <!-- زر إضافة المهمة (يظهر للمدير فقط) -->
-        <button id="btnShowAddModal" class="add-task-btn" style="display: none;" onclick="openTaskModal()">
-          <i class="fa-solid fa-plus"></i> تكليف بمهمة جديدة
-        </button>
+        <!-- زر إضافة المهمة بتصميم احترافي -->
+        <div id="btnShowAddModal" style="display: none; margin-bottom: 30px;">
+          <button class="add-task-btn" onclick="openTaskModal()" style="background: var(--primary); color: white; border: none; padding: 15px 25px; border-radius: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(31, 59, 88, 0.2); transition: 0.3s;">
+            <i class="fa-solid fa-plus-circle" style="color: var(--secondary); font-size: 1.2rem;"></i>
+            <span>تكليف بمهمة جديدة</span>
+          </button>
+        </div>
 
         <!-- حاوية البطاقات -->
         <div class="tasks-grid" id="tasksBody">
-          <div class="loader-card">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-            <p style="margin-top: 10px;">جاري تحميل المهام...</p>
+          <div class="loader-card" style="text-align: center; padding: 50px; background: white; border-radius: 15px; box-shadow: var(--shadow);">
+            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--secondary);"></i>
+            <p style="margin-top: 15px; font-weight: 700; color: var(--gray);">جاري مزامنة المهام من قاعدة البيانات...</p>
           </div>
         </div>
       </section>
+
+      <!-- ═══════════════════ واجهة تكليف المهمة (MODAL INLINE STYLED) ═══════════════════ -->
+      <div class="modal-overlay" id="taskModal" style="display: none; position: fixed; inset: 0; background: rgba(31, 59, 88, 0.7); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+        <div class="modal-content" style="background: white; width: 90%; max-width: 500px; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.3); animation: fadeUp 0.3s ease;">
+          
+          <!-- الرأس -->
+          <div style="background: var(--primary); color: white; padding: 25px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="width: 40px; height: 40px; background: rgba(201, 168, 106, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--secondary); border: 1px solid var(--secondary);">
+                <i class="fa-solid fa-clipboard-list"></i>
+              </div>
+              <div>
+                <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800;">تكليف بمهمة جديدة</h3>
+                <p style="margin: 0; font-size: 0.75rem; color: rgba(255,255,255,0.7);">أدخل بيانات التكليف للعضو المسؤول</p>
+              </div>
+            </div>
+            <button onclick="closeTaskModal()" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.7;"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <form id="addTaskForm" onsubmit="submitTask(event)" style="padding: 25px;">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+              
+              <!-- اسم المهمة -->
+              <div class="lf-group">
+                <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-file-signature" style="color: var(--secondary); margin-left: 5px;"></i> عنوان المهمة</label>
+                <input type="text" id="t-name" required placeholder="مثال: تصميم بوستر اليوم الوطني" style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+              </div>
+
+              <!-- المسؤول والأولوية -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-user-tag" style="color: var(--secondary); margin-left: 5px;"></i> المسؤول</label>
+                  <input type="text" id="t-assigned" required placeholder="اسم العضو" style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+                </div>
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-bolt" style="color: var(--secondary); margin-left: 5px;"></i> الأولوية</label>
+                  <select id="t-priority" required style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+                    <option value="عالية">🔴 عالية</option>
+                    <option value="متوسطة" selected>🟡 متوسطة</option>
+                    <option value="منخفضة">🟢 منخفضة</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- التواريخ -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-calendar-day" style="color: var(--secondary); margin-left: 5px;"></i> تاريخ البدء</label>
+                  <input type="date" id="t-start" required style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+                </div>
+                <div class="lf-group">
+                  <label style="display: block; font-size: 0.85rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;"><i class="fa-solid fa-calendar-check" style="color: var(--secondary); margin-left: 5px;"></i> التسليم</label>
+                  <input type="date" id="t-due" required style="width: 100%; padding: 12px; border: 2px solid var(--bg); border-radius: 10px; outline: none; background: #fafafa; font-family: 'Tajawal';">
+                </div>
+              </div>
+
+            </div>
+
+            <!-- أزرار التحكم -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+              <button type="button" onclick="closeTaskModal()" style="flex: 1; padding: 13px; border: none; border-radius: 12px; background: var(--bg); color: var(--gray); font-weight: 700; cursor: pointer; font-family: 'Tajawal'; transition: 0.3s;">إلغاء</button>
+              <button type="submit" id="submitBtn" style="flex: 2; padding: 13px; border: none; border-radius: 12px; background: linear-gradient(135deg, var(--secondary), var(--secondary-light)); color: var(--primary); font-weight: 900; cursor: pointer; font-family: 'Tajawal'; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s;">
+                <span>تأكيد الإرسال</span>
+                <i class="fa-solid fa-paper-plane" style="font-size: 0.9rem;"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
 
       <!-- ══ PAGE: SERVICES ══ -->
       <section class="page" id="page-services">
@@ -625,8 +662,7 @@
           <div class="divider"></div>
         </div>
         <div class="cal-wrap">
-          <iframe src="https://calendar.google.com/calendar/embed?src=afaq.sa.club%40gmail.com&ctz=Asia%2FRiyadh"
-            height="560" frameborder="0" scrolling="no"></iframe>
+          <iframe src="https://calendar.google.com/calendar/embed?src=afaq.sa.club%40gmail.com&ctz=Asia%2FRiyadh" height="560" frameborder="0" scrolling="no"></iframe>
         </div>
       </section>
 
@@ -734,8 +770,7 @@
         </div>
         <div class="canva-wrap">
           <div class="canva-ratio">
-            <iframe loading="lazy" src="https://www.canva.com/design/DAHC0kTliGA/GphOebbxmJCQJGT7Nd95qw/view?embed"
-              allowfullscreen allow="fullscreen"></iframe>
+            <iframe loading="lazy" src="https://www.canva.com/design/DAHC0kTliGA/GphOebbxmJCQJGT7Nd95qw/view?embed" allowfullscreen allow="fullscreen"></iframe>
           </div>
         </div>
       </section>
@@ -743,58 +778,18 @@
     </main>
   </div>
 
-  <!-- ═══════════════════ ADD TASK MODAL ═══════════════════ -->
-  <div class="modal-overlay" id="taskModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>إضافة مهمة جديدة</h3>
-        <button class="close-modal" onclick="closeTaskModal()">&times;</button>
-      </div>
-      <form class="modal-form" id="addTaskForm" onsubmit="submitTask(event)">
-        <div class="lf-group">
-          <label>اسم المهمة</label>
-          <input type="text" id="t-name" required placeholder="أدخل تفاصيل المهمة">
-        </div>
-        <div class="lf-group">
-          <label>الأولوية</label>
-          <select id="t-priority" required>
-            <option value="عالية">عالية</option>
-            <option value="متوسطة">متوسطة</option>
-            <option value="منخفضة">منخفضة</option>
-          </select>
-        </div>
-        <div class="lf-group">
-          <label>تاريخ البدء</label>
-          <input type="date" id="t-start" required>
-        </div>
-        <div class="lf-group">
-          <label>تاريخ التسليم</label>
-          <input type="date" id="t-due" required>
-        </div>
-        <div class="lf-group">
-          <label>المسؤول عن المهمة</label>
-          <input type="text" id="t-assigned" required placeholder="اسم العضو">
-        </div>
-        <button type="submit" class="btn-submit" id="submitBtn"><i class="fa-solid fa-save"></i> حفظ المهمة</button>
-      </form>
-    </div>
-  </div>
-
   <!-- ═══════════════════ FOOTER ═══════════════════ -->
   <footer>
     <div class="footer-brand">
-      <img src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ"
-        onerror="this.src='https://cdn-icons-png.flaticon.com/512/3214/3214736.png'">
+      <img src="https://i.ibb.co/3y9CFHGr/image.png" alt="AFAQ" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3214/3214736.png'">
       <span>نادي آفاق — لجنة الشؤون الإعلامية</span>
     </div>
     <p class="footer-copy">جميع الحقوق محفوظة © 2026 نادي آفاق</p>
     <div class="footer-social">
       <a href="https://x.com/Afaqc_lub" target="_blank" class="sx"><i class="fa-brands fa-x-twitter"></i></a>
-      <a href="https://www.instagram.com/afaqc.lub/" target="_blank" class="sig"><i
-          class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.instagram.com/afaqc.lub/" target="_blank" class="sig"><i class="fa-brands fa-instagram"></i></a>
       <a href="https://www.tiktok.com/@afaq_club" target="_blank" class="stt"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="https://www.youtube.com/@AFAQ_SA_CLUB" target="_blank" class="syt"><i
-          class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.youtube.com/@AFAQ_SA_CLUB" target="_blank" class="syt"><i class="fa-brands fa-youtube"></i></a>
     </div>
   </footer>
 
@@ -868,7 +863,7 @@
         
         if (user.role === 'admin') {
           document.getElementById('adminBadge').style.display = 'flex';
-          document.getElementById('btnShowAddModal').style.display = 'inline-flex';
+          document.getElementById('btnShowAddModal').style.display = 'block';
         }
       }
     }
@@ -945,18 +940,26 @@
       }
     }
 
-    function openTaskModal() { document.getElementById('taskModal').style.display = 'flex'; }
-    function closeTaskModal() { document.getElementById('taskModal').style.display = 'none'; document.getElementById('addTaskForm').reset(); }
+    function openTaskModal() { 
+      document.getElementById('taskModal').style.display = 'flex'; 
+      document.getElementById('t-start').valueAsDate = new Date();
+    }
+    
+    function closeTaskModal() { 
+      document.getElementById('taskModal').style.display = 'none'; 
+      document.getElementById('addTaskForm').reset(); 
+    }
 
     async function submitTask(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
-      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري النشر...';
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري الحفظ...';
       btn.disabled = true;
 
       const data = {
         task: document.getElementById('t-name').value,
-        priority: document.getElementById('t-priority').value,
+        priority: document.getElementById('t-priority').value.replace(/[^أ-ي]/g, ''),
         startDate: document.getElementById('t-start').value,
         dueDate: document.getElementById('t-due').value,
         assignedTo: document.getElementById('t-assigned').value
@@ -973,7 +976,7 @@
       } catch (err) {
         alert('حدث خطأ أثناء إضافة المهمة.');
       }
-      btn.innerHTML = '<i class="fa-solid fa-save"></i> حفظ المهمة';
+      btn.innerHTML = originalHTML;
       btn.disabled = false;
     }
 
